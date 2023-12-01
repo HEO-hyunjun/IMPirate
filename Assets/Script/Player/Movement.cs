@@ -19,6 +19,7 @@ public class Movement : MonoBehaviour
     private void Initialize()
     {
         rb = GetComponent<Rigidbody>();
+        rb.centerOfMass = new Vector3(0, 0, 0);
         if (player == null)
             return;
         stat = player.GetComponent<PlayerStatSystem>();
@@ -30,6 +31,9 @@ public class Movement : MonoBehaviour
     }
     private void FixedUpdate()
     {
+        if (!stat.isControlable)
+            return;
+
         left = Input.GetKey(KeyCode.LeftArrow)? 1 : 0;
         right = Input.GetKey(KeyCode.RightArrow) ? 1 : 0; 
         front = Mathf.Max(left,right);

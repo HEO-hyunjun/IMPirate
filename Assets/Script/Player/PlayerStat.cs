@@ -5,6 +5,7 @@ public class PlayerStat : MonoBehaviour
 {
     public PlayerStatObject source;
     public bool isDead = false;
+    public bool isControlable = false;
     public int isUsingItem = 0;
     [SerializeField]
     protected string playerID;

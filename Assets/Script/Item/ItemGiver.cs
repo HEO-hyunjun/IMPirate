@@ -6,7 +6,6 @@ using UnityEngine;
 public class ItemGiver : MonoBehaviour
 {
     [SerializeField]
-    [MMFReadOnly]
     private Item item;
 
     [SerializeField]
@@ -14,11 +13,6 @@ public class ItemGiver : MonoBehaviour
     private ItemSystem target;
     [Tooltip("아이템을 획득했을때 아이템측에서 실행될 피드백")]
     public MMF_Player whenCollide;
-    // Start is called before the first frame update
-    void Start()
-    {
-        item = GetComponent<Item>();
-    }
 
     private void OnTriggerEnter(Collider other)
     {

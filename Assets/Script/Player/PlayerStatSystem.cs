@@ -1,6 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using MoreMountains;
+using MoreMountains.Feedbacks;
+using MoreMountains.FeedbacksForThirdParty;
+using Cinemachine;
 
 // playerstatobject -> playerstat -> statsystem
 // playerstatobject data only
@@ -8,10 +12,16 @@ using UnityEngine;
 // statsystem contain method, playerstat
 public class PlayerStatSystem : PlayerStat
 {
+    public CinemachineVirtualCamera cam;
     private void Inititialize()
     {
         LoadStatObject();
-        SetPlayerID("Base"); // 서버 연결할때 각 플레이어별로 다르게 세팅해야함
+        //SetPlayerID("Base"); // 서버 연결할때 각 플레이어별로 다르게 세팅해야함
+        //isControlable = true;// 서버 연결할때 각 플레이어별로 다르게 세팅해야함
+        if (isControlable)
+        {
+            cam.Priority = 11;
+        }
         InitSpeedLevel();
     }
 
