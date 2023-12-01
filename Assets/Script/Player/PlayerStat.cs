@@ -7,14 +7,14 @@ public class PlayerStat : MonoBehaviour
     public bool isDead = false;
     public int isUsingItem = 0;
     [SerializeField]
-    private string playerID;
+    protected string playerID;
     public string PlayerID { 
         get { return playerID; } 
     }
 
     public int score = 0;
 
-    private float max_hp;
+    protected float max_hp;
     public float Max_hp
     {
         get { return max_hp; }
@@ -26,7 +26,7 @@ public class PlayerStat : MonoBehaviour
         }
     }
     [SerializeField]
-    private float hp;
+    protected float hp;
     public float Hp { 
         set
         {
@@ -43,11 +43,12 @@ public class PlayerStat : MonoBehaviour
         get { return hp; } 
     }
 
-    public int max_attack;
+    public float max_attack;
     [SerializeField]
-    private int attack;
-    public int Attack
+    protected float attack;
+    public float Attack
     {
+        get { return attack; }
         set
         {
             if (value < 0)
@@ -59,9 +60,23 @@ public class PlayerStat : MonoBehaviour
         }
     }
 
+    public float attackInterval;
+    protected int remainBullet = 15;
+    public int RemainBullet
+    {
+        set
+        {
+            if(value < 0)
+                remainBullet = 0;
+            else
+                remainBullet = value;
+        }
+        get { return remainBullet; }
+    }
+
     public int max_speed_level;
     [SerializeField]
-    private int speed_level;
+    protected int speed_level;
     public int Speed_level
     {
         get { return speed_level; }
@@ -80,7 +95,6 @@ public class PlayerStat : MonoBehaviour
     /// </summary>
     public PlayerSpeed playerSpeed;
 
-    public float attackInterval;
     public void SetPlayerID(string id)
     {
         playerID = id;
@@ -124,35 +138,13 @@ public class PlayerSpeed
     public float Rot { get { return rot; } }
 
     /// <summary>
-    /// level 1~4중 악셀 토크 로테이션값을 설정해줍니다.
+    /// level에 맞게 악셀 토크 로테이션값을 설정해줍니다.
     /// </summary>
     /// <param name="level"></param>
     public void setSpeedLevel(int level)
     {
-        switch (level)
-        {
-            case 1:
-                accel = 1000f;
-                torque = 400f;
-                rot = 45f;
-                break;
-            case 2:
-                accel = 1500f;
-                torque = 450;
-                rot = 50f;
-                break;
-            case 3:
-                accel = 2000f;
-                torque = 500f;
-                rot = 55f;
-                break;
-            case 4:
-                accel = 2500f;
-                torque = 550f;
-                rot = 60f;
-                break;
-            default:
-                break;
-        }
+        accel = 1000f + (level-1) * 500f;
+        torque = 400f + (level-1) * 50f;
+        rot = 30f + Mathf.Min((level - 1), 6) * 5;
     }
 }

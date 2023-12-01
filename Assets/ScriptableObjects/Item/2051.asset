@@ -9,12 +9,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a0dc779172c029848b3a2af15a2bfdec, type: 3}
-  m_Name: PlayerStat_Base
+  m_Script: {fileID: 11500000, guid: 393e415cceec03948be016fc3b89e1e6, type: 3}
+  m_Name: 2051
   m_EditorClassIdentifier: 
-  max_hp: 100
-  max_attack: 50
-  attack: 10
-  max_speed_level: 4
-  speed_level: 1
-  attackInterval: 5
+  itemID: 2051
+  itemName: 
+  descript: "a\uCD08\uB3D9\uC548 b\uBC30 \uACF5\uACA9\uC18D\uB3C4\uAC00 \uBE68\uB77C\uC9D1\uB2C8\uB2E4!"
+  image: {fileID: 0}
+  duration: 20
+  changeStatAmount: 2
+  owner: 
