@@ -1,9 +1,13 @@
+using MoreMountains.Feedbacks;
+using MoreMountains.Tools;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 public class PlayerStat : MonoBehaviour
 {
     public PlayerStatObject source;
+    public StatUISystem uiSystem;
+
     public bool isDead = false;
     public bool isControlable = false;
     public int isUsingItem = 0;
@@ -13,8 +17,16 @@ public class PlayerStat : MonoBehaviour
         get { return playerID; } 
     }
 
-    public int score = 0;
-
+    private int score = 0;
+    public int Score
+    {
+        get { return score; }
+        set 
+        {
+            score = value; 
+            uiSystem.updateScore();
+        }
+    }
     protected float max_hp;
     public float Max_hp
     {
@@ -40,6 +52,7 @@ public class PlayerStat : MonoBehaviour
                 hp = max_hp;
             else
                 hp = value;
+            uiSystem.updateHP();
         }
         get { return hp; } 
     }
@@ -47,9 +60,11 @@ public class PlayerStat : MonoBehaviour
     public float max_attack;
     [SerializeField]
     protected float attack;
+    [MMHidden]
+    public float tmpAttack = 0;
     public float Attack
     {
-        get { return attack; }
+        get { return Mathf.Floor(attack); }
         set
         {
             if (value < 0)
@@ -58,10 +73,12 @@ public class PlayerStat : MonoBehaviour
                 attack = max_attack;
             else
                 attack = value;
+            uiSystem.updateAttack();
         }
     }
 
     public float attackInterval;
+    [SerializeField]
     protected int remainBullet = 15;
     public int RemainBullet
     {
@@ -71,6 +88,7 @@ public class PlayerStat : MonoBehaviour
                 remainBullet = 0;
             else
                 remainBullet = value;
+            uiSystem.updateRemainBullet();
         }
         get { return remainBullet; }
     }
@@ -89,6 +107,7 @@ public class PlayerStat : MonoBehaviour
                 speed_level = max_speed_level;
             else
                 speed_level = value;
+            uiSystem.updateSpeedLevel();
         }
     }
     /// <summary>
@@ -147,5 +166,9 @@ public class PlayerSpeed
         accel = 1000f + (level-1) * 500f;
         torque = 400f + (level-1) * 50f;
         rot = 30f + Mathf.Min((level - 1), 6) * 5;
+    }
+    public int getSpeedLevel()
+    {
+        return (int)(((accel - 1000f) / 500f) + 1);
     }
 }

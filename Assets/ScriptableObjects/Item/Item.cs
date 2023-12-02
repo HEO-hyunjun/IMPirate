@@ -18,22 +18,21 @@ public class Item :ScriptableObject
     [Tooltip("아이템 설명")]
     [SerializeField]
     private string descript;
-    public string Description
+    public string Descript
     {
         get { return getDescription(); }
         set { descript = value; }
     }
+
     public Sprite image;
     public float duration = 0;
     public float changeStatAmount = 0;
-    [MMFHidden]
-    public string owner;
 
     private string getDescription()
     {
         string ret = descript;
-        ret.Replace("a",duration.ToString());
-        ret.Replace("b",changeStatAmount.ToString());
+        ret = ret.Replace("a", duration.ToString());
+        ret = ret.Replace("b", changeStatAmount.ToString());
         return ret;
     }
 }

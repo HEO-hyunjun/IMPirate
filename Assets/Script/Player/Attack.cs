@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
+[RequireComponent(typeof(PlayerStatSystem))]
 public class Attack : MonoBehaviour
 {
     public PlayerStatSystem Player;
@@ -36,6 +37,7 @@ public class Attack : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Z) && isAttackable && Player.isControlable && Player.RemainBullet != 0)
         {
             feedback.PlayFeedbacks();
+            Player.uiSystem.playAttackUIFeedback();
 
             attack = Instantiate(AttackObject);
             attack.transform.position = AttackSpawnPosition.position;

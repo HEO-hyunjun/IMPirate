@@ -22,6 +22,11 @@ public class PlayerStatSystem : PlayerStat
         {
             cam.Priority = 11;
         }
+        else
+        {
+            cam.Priority = 10;
+            cam.gameObject.SetActive(false);
+        }
         InitSpeedLevel();
     }
 
@@ -29,10 +34,9 @@ public class PlayerStatSystem : PlayerStat
     {
         Inititialize();
     }
-
     public void Damage(float damage)
     {
-        if(!isDead || isUsingItem != 204) //무적아이템 사용중이거나, 죽지 않았다면,
+        if(!isDead || (isUsingItem/10) != 204) //무적아이템 사용중이거나, 죽지 않았다면,
             Hp -= damage;
         if (isDead)
             Dead();
@@ -41,26 +45,6 @@ public class PlayerStatSystem : PlayerStat
     public void Dead()
     {
         Debug.Log(PlayerID + "is dead");
-    }
-
-    /// <summary>
-    /// 임시로 스피드 단계를 조정하는 함수입니다.
-    /// 플레이어의 스피드레벨은 변화하지 않음으로
-    /// 스피드 레벨을 바을 변동시키려면 addSpeedLevel함수를 사용할것
-    /// </summary>
-    /// <param name="relativeLevel"></param>
-    public void modifyRelativeSpeed(int relativeLevel)
-    {
-        playerSpeed.setSpeedLevel(Speed_level + relativeLevel);
-    }
-    /// <summary>
-    /// 스피드레벨을 올리기위해 만든 함수입니다.
-    /// </summary>
-    /// <param name="add"></param>
-    public void addSpeedLevel(int add)
-    {
-        Speed_level += add;
-        InitSpeedLevel();
     }
     public void TempModifyItemUsing(float t, int itemID)
     {
@@ -72,10 +56,33 @@ public class PlayerStatSystem : PlayerStat
         yield return new WaitForSeconds(t);
         isUsingItem = 0;
     }
+
+    /// <summary>
+    /// 임시로 스피드 단계를 조정하는 함수입니다.
+    /// 플레이어의 스피드레벨은 변화하지 않음으로
+    /// 스피드 레벨을 바을 변동시키려면 addSpeedLevel함수를 사용할것
+    /// </summary>
+    /// <param name="relativeLevel"></param>
+    public void modifyRelativeSpeed(int relativeLevel)
+    {
+        playerSpeed.setSpeedLevel(Speed_level + relativeLevel);
+        uiSystem.updateSpeedLevel(); // 임시로 바꾸는 함수 뒤에는 업데이트를 해줘야합니다.
+    }
+    /// <summary>
+    /// 스피드레벨을 올리기위해 만든 함수입니다.
+    /// </summary>
+    /// <param name="add"></param>
+    public void addSpeedLevel(int add)
+    {
+        Speed_level += add;
+        InitSpeedLevel();
+    }
+    
     #region 사용 아이템별 함수,코루틴
     public void TempModifyRelativeSpeed(float t, int relativeLevel)
     {
         StartCoroutine(CorTempModifyRelativeSpeed(t, relativeLevel));
+        uiSystem.updateSpeedLevel(); // 임시로 바꾸는 함수 뒤에는 업데이트를 해줘야합니다.
     }
     private IEnumerator CorTempModifyRelativeSpeed(float t, int relativeLevel)
     {
@@ -90,10 +97,15 @@ public class PlayerStatSystem : PlayerStat
     }
     private IEnumerator CorTempMultiplyAttack(float t, float multi)
     {
-        float tmp = attack;
-        attack *= multi;
+        float tmp = Attack;
+        Attack *= multi;
         yield return new WaitForSeconds(t);
-        attack = tmp;
+        Attack = tmp;
+        if(tmpAttack != 0)
+        {
+            Attack += tmpAttack;
+            tmpAttack = 0;
+        }
     }
 
     public void TempMultiplyAttackInterval(float t, float multi)

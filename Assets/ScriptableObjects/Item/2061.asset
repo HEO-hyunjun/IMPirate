@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: 2061
   m_EditorClassIdentifier: 
   itemID: 2061
-  itemName: 
-  descript: "\uC9C0\uB8B0\uB97C \uC124\uCE58\uD588\uC2B5\uB2C8\uB2E4!"
-  image: {fileID: 0}
+  itemName: "\uC9C0\uB8B0"
+  descript: "\uC9C0\uB8B0\uB97C \uC124\uCE58\uD569\uB2C8\uB2E4"
+  image: {fileID: 21300000, guid: 614b16aba7826604abad8cb826fe493d, type: 3}
   duration: 1
   changeStatAmount: 0
   owner: 

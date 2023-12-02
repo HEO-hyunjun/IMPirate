@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: 2011
   m_EditorClassIdentifier: 
   itemID: 2011
-  itemName: 
+  itemName: "\uC784\uC2DC\uB0A0\uAC1C"
   descript: "\uC18D\uB3C4 b \uB808\uBCA8\uC744 a\uCD08\uB3D9\uC548 \uC62C\uB9BD\uB2C8\uB2E4."
-  image: {fileID: 0}
+  image: {fileID: 21300000, guid: 6adf6877f36f4444d902ac02b0eb93a9, type: 3}
   duration: 15
   changeStatAmount: 2
   owner: 

@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: 2021
   m_EditorClassIdentifier: 
   itemID: 2021
-  itemName: 
+  itemName: "\uC218\uB9AC\uD0A4\uD2B8"
   descript: "\uCCB4\uB825\uC744 a\uCD08\uB3D9\uC548 b\uD68C\uBCF5\uD569\uB2C8\uB2E4."
-  image: {fileID: 0}
+  image: {fileID: 21300000, guid: f8dc811490c149a4a98505b3fcf1900f, type: 3}
   duration: 5
-  changeStatAmount: 30
+  changeStatAmount: 20
   owner: 

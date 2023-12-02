@@ -1,16 +1,20 @@
 using MoreMountains.Feedbacks;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using static UnityEditor.Progress;
 
+[RequireComponent(typeof(PlayerStatSystem))]
 public class ItemSystem : MonoBehaviour
 {
     #region 아이템관련 클래스
     [System.Serializable]
     public class ItemSlot
     {
+        [MMFHidden]
+        public bool isFull = false;
         [MMFReadOnly]
         public Item item;
         [Tooltip("아이템이 채워질 UI 1번 2번")]
@@ -33,14 +37,27 @@ public class ItemSystem : MonoBehaviour
     public MMF_Player itemUsingCoolDownFeedback; // 아이템슬롯쪽에 회색 투명한 오버레이씌우기
     [Tooltip("아이템을 획득했을때 재생할 파티클 피드백")]
     public MMF_Player itemGetFeedback; // 플레이어화면 캔버스에 띄울 UI에 설명
-    [Tooltip("아이템을 획득했을때 재생할 UI 피드백")]
-    public MMF_Player itemGetUIFeedback; // 플레이어화면 캔버스에 띄울 UI에 설명
+    [Tooltip("아이템 설명UI 재생할 피드백")]
+    public MMF_Player itemUIFeedback; // 플레이어화면 캔버스에 띄울 UI에 설명
+    public Image itemDescriptImage;
 
 
     [Tooltip("플레이어측에서 재생할 피드백을 아이템 종류별로 담아두는 데이터베이스")]
     public List<ItemDataSource> ItemDataList;
-
+    public GameObject minePrefab;
     private PlayerStatSystem statSystem;
+
+    private void Awake()
+    {
+        statSystem = GetComponent<PlayerStatSystem>();
+    }
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Q))
+            UseItemSlot(0);
+        if (Input.GetKeyDown(KeyCode.W))
+            UseItemSlot(1);
+    }
 
     #region 아이템 획득 ~ 사용까지의 함수들
     /// <summary>
@@ -54,6 +71,9 @@ public class ItemSystem : MonoBehaviour
         // 2: 사용아이템
         int itemCategory = itemID / 1000;
         itemGetFeedback.PlayFeedbacks();
+
+        SetDescriptText(itemUIFeedback, FindItemByID(itemID), true);
+
         switch (itemCategory)
         {
             case 1: // 획득 아이템 -> 바로 효과적용
@@ -74,7 +94,7 @@ public class ItemSystem : MonoBehaviour
         int findIDX = -1;
         for(int i=0; i < 2; i++)
         {
-            if (itemSlot[i].item.itemID == 0)
+            if (!itemSlot[i].isFull)
             {
                 findIDX = i;
                 break;
@@ -83,12 +103,11 @@ public class ItemSystem : MonoBehaviour
         //아이템 슬롯이 꽉 찼다면 무시
         if(findIDX == - 1)
             return;
-
-        itemGetUIFeedback.PlayFeedbacks();
-
+        itemSlot[findIDX].isFull = true;
+        itemUIFeedback?.PlayFeedbacks();
         itemSlot[findIDX].item = FindItemByID(itemID);
         itemSlot[findIDX].EmptyImage.sprite = FindImageByID(itemID);
-
+        itemSlot[findIDX].EmptyImage.color = new Color(255, 255, 255, 255);
     }
     
 
@@ -99,12 +118,19 @@ public class ItemSystem : MonoBehaviour
     public void UseItemSlot(int index)
     {
         //아이템슬롯에서 아이템 아이디를 가져와서 해당 함수 사용
-        if (itemSlot[index].item.itemID == 0)
+        if (itemSlot[index].item == null)
             return;
+
         if (!UseItem(itemSlot[index].item.itemID))
             return;
-        SetFeedbackDuration<MMF_ScaleShake>(itemSlot[index].usingItemFeedback, itemSlot[index].item.duration);
-        SetFeedbackDuration<MMF_Pause>(itemUsingCoolDownFeedback, itemSlot[index].item.duration);
+
+        SetDescriptText(itemUIFeedback, itemSlot[index].item, false);
+        itemUIFeedback.PlayFeedbacks();
+
+        SetLooperDuration(itemSlot[index].usingItemFeedback, itemSlot[index].item.duration);;
+        itemSlot[index].usingItemFeedback.PlayFeedbacks();
+
+        TempUsingSlot(itemSlot[index].item.duration, index);
     }
 
     /// <summary>
@@ -118,14 +144,15 @@ public class ItemSystem : MonoBehaviour
     private bool UseItem(int itemID)
     {
         Item item = FindItemByID(itemID);
-        if(item != null)
+        if(item == null)
             return false;
+
         itemID /= 10;
 
-        if (item.itemID / 100 == 1)
+        if (itemID / 100 == 1)
         {
-            itemGetUIFeedback.PlayFeedbacks();
-            FindFeedbackByID(itemID).PlayFeedbacks();
+            itemUIFeedback.PlayFeedbacks();
+            FindFeedbackByID(item.itemID)?.PlayFeedbacks();
             switch (itemID)
             {
                 // 획득아이템
@@ -133,24 +160,36 @@ public class ItemSystem : MonoBehaviour
                     statSystem.RemainBullet += (int)item.changeStatAmount;
                     return true;
                 case 102:
-                    statSystem.score += (int)item.changeStatAmount;
+                    statSystem.Score += (int)item.changeStatAmount;
                     return true;
                 case 103:
                     statSystem.addSpeedLevel((int)item.changeStatAmount);
                     return true;
                 case 104:
+                    if ((statSystem.isUsingItem / 10) == 203) //아이템버프받는중이라면,
+                        statSystem.tmpAttack += item.changeStatAmount;
                     statSystem.Attack += item.changeStatAmount;
                     return true;
                 case 105:
-                    if (item.owner != statSystem.PlayerID)
-                        statSystem.Damage(item.changeStatAmount);
+                    statSystem.Damage(item.changeStatAmount);
                     return true;
             }
         }
         if (statSystem.isUsingItem != 0) // 다른 아이템 사용중
             return false;
-        statSystem.score += 5;
+        statSystem.Score += 5;
         statSystem.TempModifyItemUsing(item.duration, item.itemID);
+
+        SetHoldPauseDuration(itemUsingCoolDownFeedback, item.duration);
+        itemUsingCoolDownFeedback.PlayFeedbacks();
+
+        MMF_Player tmp = FindFeedbackByID(item.itemID);
+        if (tmp != null)
+        {
+            SetHoldPauseDuration(tmp, item.duration);
+            tmp.PlayFeedbacks();
+        }
+
         switch (itemID)
         {
             // 사용아이템
@@ -169,7 +208,11 @@ public class ItemSystem : MonoBehaviour
                 statSystem.TempMultiplyAttackInterval(itemID, item.changeStatAmount);
                 return true;
             case 206:
-                //지뢰 피드백 -> 지뢰획득아이템(105) 인스턴스
+                //지뢰획득아이템(105) 설치
+                GameObject mine = Instantiate(minePrefab);
+                mine.transform.position = transform.position;
+                ItemGiver mineItemGiver = mine.GetComponent<ItemGiver>();
+                mineItemGiver.installer = statSystem.PlayerID;
                 return true;
         }
 
@@ -178,12 +221,35 @@ public class ItemSystem : MonoBehaviour
     #endregion
 
     #region 로직구현을 위한 보조함수들
-    private void SetFeedbackDuration<T>(MMF_Player feedback, float duration) where T : MMF_Feedback
+    private void SetPauseDuration(MMF_Player feedback, float duration)
     {
-        //특정 시간 동안, 피드백 재생
-        MMF_Feedback pause = feedback.GetFeedbackOfType<T>(MMF_Player.AccessMethods.First, 0);
+        MMF_Pause pause = feedback.GetFeedbackOfType<MMF_Pause>(MMF_Player.AccessMethods.First, 0);
         pause.FeedbackDuration = duration;
-        itemUsingCoolDownFeedback.PlayFeedbacks();
+    }
+
+    private void SetHoldPauseDuration(MMF_Player feedback, float duration)
+    {
+        MMF_HoldingPause pause = feedback.GetFeedbackOfType<MMF_HoldingPause>(MMF_Player.AccessMethods.First, 0);
+        pause.FeedbackDuration = duration;
+    }
+
+    private void SetLooperDuration(MMF_Player feedback, float duration)
+    {
+        MMF_Looper looper = feedback.GetFeedbackOfType<MMF_Looper>(MMF_Player.AccessMethods.First, 0);
+        looper.NumberOfLoops = (int)(duration*2);
+    }
+
+    private void SetDescriptText(MMF_Player feedback, Item item, bool isGet)
+    {
+        itemDescriptImage.sprite = item.image;
+
+        List<MMF_TMPText> texts = feedback.GetFeedbacksOfType<MMF_TMPText>();
+        if (isGet)
+            texts[0].NewText = "획득: " + item.itemName;
+        else
+            texts[0].NewText = "사용: " + item.itemName;
+
+        texts[1].NewText = item.Descript;
     }
     private Item FindItemByID(int itemID)
     {
@@ -212,6 +278,18 @@ public class ItemSystem : MonoBehaviour
                 return i.feedback;
         }
         return null;
+    }
+
+    private void TempUsingSlot(float t, int index)
+    {
+        if (!itemSlot[index].isFull)
+            return;
+        StartCoroutine(CorTempUsingSlot(t, index));
+    }
+    private IEnumerator CorTempUsingSlot(float t, int index)
+    {
+        yield return new WaitForSeconds(t);
+        itemSlot[index].isFull = false;
     }
     #endregion
 }
