@@ -31,8 +31,11 @@ public class ItemSystem : MonoBehaviour
     public List<ItemSlot> itemSlot;
     [Tooltip("아이템 사용중일때 itemSlot에 적용할 피드백")]
     public MMF_Player itemUsingCoolDownFeedback; // 아이템슬롯쪽에 회색 투명한 오버레이씌우기
-    [Tooltip("아이템을 획득했을때 재생할 피드백")]
-    public MMF_Player itemGetFeedback; // 플레이어화면 캔버스에 띄울 UI에 설명, 소리재생, 파티클재생
+    [Tooltip("아이템을 획득했을때 재생할 파티클 피드백")]
+    public MMF_Player itemGetFeedback; // 플레이어화면 캔버스에 띄울 UI에 설명
+    [Tooltip("아이템을 획득했을때 재생할 UI 피드백")]
+    public MMF_Player itemGetUIFeedback; // 플레이어화면 캔버스에 띄울 UI에 설명
+
 
     [Tooltip("플레이어측에서 재생할 피드백을 아이템 종류별로 담아두는 데이터베이스")]
     public List<ItemDataSource> ItemDataList;
@@ -50,8 +53,8 @@ public class ItemSystem : MonoBehaviour
         // 1: 획득아이템
         // 2: 사용아이템
         int itemCategory = itemID / 1000;
-
-        switch(itemCategory)
+        itemGetFeedback.PlayFeedbacks();
+        switch (itemCategory)
         {
             case 1: // 획득 아이템 -> 바로 효과적용
                 UseItem(itemID);
@@ -81,7 +84,7 @@ public class ItemSystem : MonoBehaviour
         if(findIDX == - 1)
             return;
 
-        itemGetFeedback.PlayFeedbacks();
+        itemGetUIFeedback.PlayFeedbacks();
 
         itemSlot[findIDX].item = FindItemByID(itemID);
         itemSlot[findIDX].EmptyImage.sprite = FindImageByID(itemID);
@@ -121,7 +124,8 @@ public class ItemSystem : MonoBehaviour
 
         if (item.itemID / 100 == 1)
         {
-            itemGetFeedback.PlayFeedbacks();
+            itemGetUIFeedback.PlayFeedbacks();
+            FindFeedbackByID(itemID).PlayFeedbacks();
             switch (itemID)
             {
                 // 획득아이템

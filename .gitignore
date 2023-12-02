@@ -11,6 +11,7 @@
 /[Uu]ser[Ss]ettings/
 # 오픈소스가 아닌 유료 에셋들 저장경로입니다.
 /Assets/Thirdparty/Others/
+/Assets/AssetKits
 
 # MemoryCaptures can get excessive in size.
 # They also could contain extremely sensitive data
