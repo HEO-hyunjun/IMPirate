@@ -5,6 +5,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 
 [RequireComponent(typeof(PlayerStatSystem))]
+
 public class Attack : MonoBehaviour
 {
     public PlayerStatSystem Player;
@@ -14,6 +15,7 @@ public class Attack : MonoBehaviour
     public float attackPower = 100;
     public Transform AttackSpawnPosition;
     public MMF_Player feedback;
+
 
     [SerializeField]
     [MMFReadOnly]
@@ -34,7 +36,7 @@ public class Attack : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Z) && isAttackable && Player.isControlable && Player.RemainBullet != 0)
+        if (Input.GetKeyDown(KeyCode.Z) /* == 뭘뭘 형태로 */ && isAttackable && Player.isControlable && Player.RemainBullet != 0)
         {
             feedback.PlayFeedbacks();
             Player.uiSystem.playAttackUIFeedback();

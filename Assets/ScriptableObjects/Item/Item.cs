@@ -10,12 +10,12 @@ using System;
 [CreateAssetMenu(fileName = "Item", menuName = "Scriptable Object/Item", order = int.MaxValue)]
 public class Item :ScriptableObject
 {
-    //¾ÆÀÌÅÛ Ä«Å×°í¸® 1000ÀÚ¸®¼ö°¡
-    // 1: È¹µæ¾ÆÀÌÅÛ
-    // 2: »ç¿ë¾ÆÀÌÅÛ
+    //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Ä«ï¿½×°ï¿½ï¿½ï¿½ 1000ï¿½Ú¸ï¿½ï¿½ï¿½ï¿½ï¿½
+    // 1: È¹ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+    // 2: ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
     public int itemID;
     public string itemName;
-    [Tooltip("¾ÆÀÌÅÛ ¼³¸í")]
+    [Tooltip("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½")]
     [SerializeField]
     private string descript;
     public string Descript
@@ -23,16 +23,17 @@ public class Item :ScriptableObject
         get { return getDescription(); }
         set { descript = value; }
     }
-
     public Sprite image;
     public float duration = 0;
     public float changeStatAmount = 0;
+    [MMFHidden]
+    public string owner;
 
     private string getDescription()
     {
         string ret = descript;
-        ret = ret.Replace("a", duration.ToString());
-        ret = ret.Replace("b", changeStatAmount.ToString());
+        ret.Replace("a",duration.ToString());
+        ret.Replace("b",changeStatAmount.ToString());
         return ret;
     }
 }
