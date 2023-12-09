@@ -13,8 +13,8 @@ public class Movement : MonoBehaviour
     public AnimationCode anime_a ;
 
     Rigidbody rb;
-    // ����
-    [Tooltip("���ʴ�� FL,FR,BL,BR")]
+    // 바퀴리스트
+    [Tooltip("순서대로 FL,FR,BL,BR")]
     public WheelCollider[] wheels = new WheelCollider[4];
 
     private void Initialize()

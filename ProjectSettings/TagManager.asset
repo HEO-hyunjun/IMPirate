@@ -12,8 +12,8 @@ TagManager:
   - Water
   - UI
   - PlayerCharacter
-  - MiniMapLayer
-  - 
+  - MiniMapDisplayUI
+  - MiniMapDisplayObject
   - 
   - 
   - 
