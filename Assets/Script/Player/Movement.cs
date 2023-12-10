@@ -10,10 +10,11 @@ public class Movement : MonoBehaviour
 
     public GameObject player;
     private PlayerStatSystem stat;
+    public AnimationCode anime_a ;
 
     Rigidbody rb;
-    // ¹ÙÄû
-    [Tooltip("Â÷·Ê´ë·Î FL,FR,BL,BR")]
+    // ë°”í€´ë¦¬ìŠ¤íŠ¸
+    [Tooltip("ìˆœì„œëŒ€ë¡œ FL,FR,BL,BR")]
     public WheelCollider[] wheels = new WheelCollider[4];
 
     private void Initialize()
@@ -34,11 +35,19 @@ public class Movement : MonoBehaviour
         if (!stat.isControlable)
             return;
 
+<<<<<<< HEAD
         left = Input.GetKey(KeyCode.LeftArrow) ? 1 : 0;
         right = Input.GetKey(KeyCode.RightArrow) ? 1 : 0;
         front = Mathf.Max(left, right);
         rb.AddForce(transform.rotation * new Vector3(0, 0, front * stat.playerSpeed.Accel));
         for (int i = 2; i < 4; i++)
+=======
+        left = Input.GetKey(KeyCode.LeftArrow)? 1 : 0; // left = anime_a.state
+        right = Input.GetKey(KeyCode.RightArrow) ? 1 : 0; 
+        front = Mathf.Max(left,right);
+        rb.AddForce(transform.rotation * new Vector3(0,0,front* stat.playerSpeed.Accel));
+        for(int i = 2; i < 4; i++)
+>>>>>>> 18d92eae52e15f2f716e9b2f3cb38c91d3f1d6fe
         {
             wheels[i].motorTorque = stat.playerSpeed.Torque * front;
         }

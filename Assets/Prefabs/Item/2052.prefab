@@ -27,7 +27,7 @@ Transform:
   m_GameObject: {fileID: 1237276135036502667}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 14.55, y: 4.2, z: 23.24}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -50,6 +50,7 @@ MonoBehaviour:
   item: {fileID: 11400000, guid: 1f6ff9e7b886e6e4ab585b70c4530938, type: 2}
   targetItemSystem: {fileID: 0}
   whenCollide: {fileID: 551441617596206847}
+  installer: developer
 --- !u!135 &186687026811204560
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -70,7 +71,7 @@ SphereCollider:
   m_Enabled: 1
   serializedVersion: 3
   m_Radius: 5
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Center: {x: 0, y: 4, z: 0}
 --- !u!1 &2930012710879587545
 GameObject:
   m_ObjectHideFlags: 0
@@ -4933,7 +4934,7 @@ Transform:
   m_GameObject: {fileID: 8329610809426115407}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 4, z: 0}
   m_LocalScale: {x: 3, y: 3, z: 3}
   m_ConstrainProportionsScale: 0
   m_Children:
