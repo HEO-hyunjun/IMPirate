@@ -11,10 +11,10 @@ TagManager:
   - 
   - Water
   - UI
-  - PlayerCharacter
+  - PlayerBody
   - MiniMapDisplayUI
   - MiniMapDisplayObject
-  - 
+  - PlayerCharacter
   - 
   - 
   - 
