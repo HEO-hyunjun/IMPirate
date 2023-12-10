@@ -21,12 +21,12 @@ public class Attack : MonoBehaviour
     [SerializeField]
     [MMFReadOnly]
     private float deltaTime;
-    
+
     private void Awake()
     {
-        if (Player == null) 
+        if (Player == null)
             Player = GetComponent<PlayerStatSystem>();
-        if(AttackSpawnPosition == null)
+        if (AttackSpawnPosition == null)
             AttackSpawnPosition = transform;
         deltaTime = 0;
         StartCoroutine(CalcTime());
@@ -44,7 +44,7 @@ public class Attack : MonoBehaviour
             attack.transform.forward = transform.forward;
 
             attackRb = attack.GetComponent<Rigidbody>();
-            attackRb.AddForce((attack.transform.forward + new Vector3(0,1* attack.transform.forward.y, 0))* attackPower);
+            attackRb.AddForce((attack.transform.forward + new Vector3(0, 1 * attack.transform.forward.y, 0)) * attackPower);
 
             Player.RemainBullet--;
 
@@ -62,7 +62,7 @@ public class Attack : MonoBehaviour
         {
             deltaTime += Time.deltaTime;
             yield return null;
-            if(!isAttackable && deltaTime > Player.attackInterval)
+            if (!isAttackable && deltaTime > Player.attackInterval)
             {
                 deltaTime = 0;
                 isAttackable = true;

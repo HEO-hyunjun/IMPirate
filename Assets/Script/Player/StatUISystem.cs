@@ -60,7 +60,7 @@ public class StatUISystem : MonoBehaviour
             hpImageFill = HPChangeFeedback.GetFeedbacksOfType<MMF_ImageFill>();
         if (hpTextColor == null)
             hpTextColor = HPChangeFeedback.GetFeedbackOfType<MMF_TMPColor>(MMF_Player.AccessMethods.First, 0); ;
-        
+
         HPText.text = String.Format("{0}/{1}", source.Hp, source.Max_hp);
 
         if (hp > source.Hp) // 기존 hp보다 줄어듦 -> 데미지
@@ -73,12 +73,12 @@ public class StatUISystem : MonoBehaviour
     }
     public void HealHP()
     {
-        if(hpTextColor != null)
-        { 
+        if (hpTextColor != null)
+        {
             hpTextColor.DestinationColor = new Color(0, 200, 0);
         }
         if (hpImageFill != null)
-        { 
+        {
             hpImageFill[0].BoundImage = HPGaugeHelp;
             hpImageFill[0].CurveRemapOne = source.Hp / source.Max_hp;
             hpImageFill[1].BoundImage = HPGauge;
@@ -89,11 +89,11 @@ public class StatUISystem : MonoBehaviour
     public void DamageHP()
     {
         if (hpTextColor != null)
-        { 
+        {
             hpTextColor.DestinationColor = new Color(200, 0, 0);
         }
         if (hpImageFill != null)
-        { 
+        {
             hpImageFill[0].BoundImage = HPGauge;
             hpImageFill[0].CurveRemapOne = source.Hp / source.Max_hp;
             hpImageFill[1].BoundImage = HPGaugeHelp;
@@ -106,7 +106,7 @@ public class StatUISystem : MonoBehaviour
     public void updateScore()
     {
         scoreText.text = source.Score.ToString();
-        if(source.Score - score > 1)
+        if (source.Score - score > 1)
         {
             int gap = source.Score - score;
             if (scoreFontSize == null)
@@ -115,9 +115,9 @@ public class StatUISystem : MonoBehaviour
                 scoreDilate = ScoreChangeFeedback.GetFeedbackOfType<MMF_TMPDilate>();
 
             if (scoreFontSize != null)
-                scoreFontSize.RemapOne = gap*2;
-            if(scoreDilate != null)
-                scoreDilate.RemapOne = gap/2;
+                scoreFontSize.RemapOne = gap * 2;
+            if (scoreDilate != null)
+                scoreDilate.RemapOne = gap / 2;
             ScoreChangeFeedback.Initialization(true);
             ScoreChangeFeedback?.PlayFeedbacks();
         }
@@ -164,9 +164,9 @@ public class StatUISystem : MonoBehaviour
         updateRemainBullet();
         if (attackUIImageFill == null)
             attackUIImageFill = attackUIFeedback.GetFeedbackOfType<MMF_ImageFill>();
-        if (attackUIImageFill != null) 
-        { 
-            attackUIImageFill.Duration = source.attackInterval-0.2f;
+        if (attackUIImageFill != null)
+        {
+            attackUIImageFill.Duration = source.attackInterval - 0.2f;
             attackUIImageFill.ComputeTotalDuration();
         }
         attackUIFeedback?.PlayFeedbacks();

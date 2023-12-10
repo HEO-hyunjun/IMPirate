@@ -13,17 +13,18 @@ public class PlayerStat : MonoBehaviour
     public int isUsingItem = 0;
     [SerializeField]
     protected string playerID;
-    public string PlayerID { 
-        get { return playerID; } 
+    public string PlayerID
+    {
+        get { return playerID; }
     }
 
     private int score = 0;
     public int Score
     {
         get { return score; }
-        set 
+        set
         {
-            score = value; 
+            score = value;
             uiSystem.updateScore();
         }
     }
@@ -40,7 +41,8 @@ public class PlayerStat : MonoBehaviour
     }
     [SerializeField]
     protected float hp;
-    public float Hp { 
+    public float Hp
+    {
         set
         {
             if (value < 0)
@@ -54,7 +56,7 @@ public class PlayerStat : MonoBehaviour
                 hp = value;
             uiSystem.updateHP();
         }
-        get { return hp; } 
+        get { return hp; }
     }
 
     public float max_attack;
@@ -84,7 +86,7 @@ public class PlayerStat : MonoBehaviour
     {
         set
         {
-            if(value < 0)
+            if (value < 0)
                 remainBullet = 0;
             else
                 remainBullet = value;
@@ -129,7 +131,7 @@ public class PlayerStat : MonoBehaviour
         attack = source.attack;
 
         max_speed_level = source.max_speed_level;
-        speed_level= source.speed_level;
+        speed_level = source.speed_level;
         playerSpeed = new PlayerSpeed();
         InitSpeedLevel();
 
@@ -163,8 +165,8 @@ public class PlayerSpeed
     /// <param name="level"></param>
     public void setSpeedLevel(int level)
     {
-        accel = 1000f + (level-1) * 500f;
-        torque = 400f + (level-1) * 50f;
+        accel = 1000f + (level - 1) * 500f;
+        torque = 400f + (level - 1) * 50f;
         rot = 30f + Mathf.Min((level - 1), 6) * 5;
     }
     public int getSpeedLevel()

@@ -34,18 +34,18 @@ public class Movement : MonoBehaviour
         if (!stat.isControlable)
             return;
 
-        left = Input.GetKey(KeyCode.LeftArrow)? 1 : 0;
-        right = Input.GetKey(KeyCode.RightArrow) ? 1 : 0; 
-        front = Mathf.Max(left,right);
-        rb.AddForce(transform.rotation * new Vector3(0,0,front* stat.playerSpeed.Accel));
-        for(int i = 2; i < 4; i++)
+        left = Input.GetKey(KeyCode.LeftArrow) ? 1 : 0;
+        right = Input.GetKey(KeyCode.RightArrow) ? 1 : 0;
+        front = Mathf.Max(left, right);
+        rb.AddForce(transform.rotation * new Vector3(0, 0, front * stat.playerSpeed.Accel));
+        for (int i = 2; i < 4; i++)
         {
             wheels[i].motorTorque = stat.playerSpeed.Torque * front;
         }
 
         for (int i = 0; i < 2; i++)
         {
-            wheels[i].steerAngle = (left-right) * stat.playerSpeed.Rot;
+            wheels[i].steerAngle = (left - right) * stat.playerSpeed.Rot;
         }
     }
 }

@@ -92,7 +92,7 @@ public class ItemSystem : MonoBehaviour
     private void PushItem(int itemID)
     {
         int findIDX = -1;
-        for(int i=0; i < 2; i++)
+        for (int i = 0; i < 2; i++)
         {
             if (!itemSlot[i].isFull)
             {
@@ -101,7 +101,7 @@ public class ItemSystem : MonoBehaviour
             }
         }
         //아이템 슬롯이 꽉 찼다면 무시
-        if(findIDX == - 1)
+        if (findIDX == -1)
             return;
         itemSlot[findIDX].isFull = true;
         itemUIFeedback?.PlayFeedbacks();
@@ -109,7 +109,7 @@ public class ItemSystem : MonoBehaviour
         itemSlot[findIDX].EmptyImage.sprite = FindImageByID(itemID);
         itemSlot[findIDX].EmptyImage.color = new Color(255, 255, 255, 255);
     }
-    
+
 
     /// <summary>
     /// 특정인덱스의 아이템슬롯 아이템을 사용하는 함수
@@ -127,7 +127,7 @@ public class ItemSystem : MonoBehaviour
         SetDescriptText(itemUIFeedback, itemSlot[index].item, false);
         itemUIFeedback.PlayFeedbacks();
 
-        SetLooperDuration(itemSlot[index].usingItemFeedback, itemSlot[index].item.duration);;
+        SetLooperDuration(itemSlot[index].usingItemFeedback, itemSlot[index].item.duration); ;
         itemSlot[index].usingItemFeedback.PlayFeedbacks();
 
         TempUsingSlot(itemSlot[index].item.duration, index);
@@ -144,7 +144,7 @@ public class ItemSystem : MonoBehaviour
     private bool UseItem(int itemID)
     {
         Item item = FindItemByID(itemID);
-        if(item == null)
+        if (item == null)
             return false;
 
         itemID /= 10;
@@ -194,13 +194,13 @@ public class ItemSystem : MonoBehaviour
         {
             // 사용아이템
             case 201:
-                statSystem.TempModifyRelativeSpeed(item.duration,(int)item.changeStatAmount);
+                statSystem.TempModifyRelativeSpeed(item.duration, (int)item.changeStatAmount);
                 return true;
             case 202:
                 statSystem.TempHPAdd(item.duration, item.changeStatAmount);
                 return true;
             case 203:
-                statSystem.TempMultiplyAttack(item.duration,item.changeStatAmount);
+                statSystem.TempMultiplyAttack(item.duration, item.changeStatAmount);
                 return true;
             case 204: //무적
                 return true;
@@ -236,7 +236,7 @@ public class ItemSystem : MonoBehaviour
     private void SetLooperDuration(MMF_Player feedback, float duration)
     {
         MMF_Looper looper = feedback.GetFeedbackOfType<MMF_Looper>(MMF_Player.AccessMethods.First, 0);
-        looper.NumberOfLoops = (int)(duration*2);
+        looper.NumberOfLoops = (int)(duration * 2);
     }
 
     private void SetDescriptText(MMF_Player feedback, Item item, bool isGet)

@@ -8,7 +8,7 @@ using JetBrains.Annotations;
 using System;
 
 [CreateAssetMenu(fileName = "Item", menuName = "Scriptable Object/Item", order = int.MaxValue)]
-public class Item :ScriptableObject
+public class Item : ScriptableObject
 {
     //아이템 카테고리 1000자리수가
     // 1: 획득아이템

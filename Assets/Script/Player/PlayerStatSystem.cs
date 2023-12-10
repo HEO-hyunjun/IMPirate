@@ -36,7 +36,7 @@ public class PlayerStatSystem : PlayerStat
     }
     public void Damage(float damage)
     {
-        if(!isDead || (isUsingItem/10) != 204) //무적아이템 사용중이거나, 죽지 않았다면,
+        if (!isDead || (isUsingItem / 10) != 204) //무적아이템 사용중이거나, 죽지 않았다면,
             Hp -= damage;
         if (isDead)
             Dead();
@@ -77,7 +77,7 @@ public class PlayerStatSystem : PlayerStat
         Speed_level += add;
         InitSpeedLevel();
     }
-    
+
     #region 사용 아이템별 함수,코루틴
     public void TempModifyRelativeSpeed(float t, int relativeLevel)
     {
@@ -101,7 +101,7 @@ public class PlayerStatSystem : PlayerStat
         Attack *= multi;
         yield return new WaitForSeconds(t);
         Attack = tmp;
-        if(tmpAttack != 0)
+        if (tmpAttack != 0)
         {
             Attack += tmpAttack;
             tmpAttack = 0;
@@ -115,7 +115,7 @@ public class PlayerStatSystem : PlayerStat
     private IEnumerator CorTempMultiplyAttackInterva(float t, float multi)
     {
         float tmp = attackInterval;
-        attackInterval *= (1/multi);
+        attackInterval *= (1 / multi);
         yield return new WaitForSeconds(t);
         attackInterval = tmp;
     }
@@ -128,10 +128,10 @@ public class PlayerStatSystem : PlayerStat
     private IEnumerator CorTempHPAdd(float t, float amount)
     {
         int destCnt = 5;
-        for (int cnt = 0; cnt<destCnt; cnt++)
+        for (int cnt = 0; cnt < destCnt; cnt++)
         {
             Hp += amount / destCnt;
-            yield return new WaitForSeconds(t/destCnt);
+            yield return new WaitForSeconds(t / destCnt);
         }
     }
     #endregion
