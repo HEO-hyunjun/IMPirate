@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using Mirror;
 
 public class CreateRoomUI : MonoBehaviour
 {
@@ -31,6 +32,15 @@ public class CreateRoomUI : MonoBehaviour
                 maxPlayerCountButtons[i].image.color = new Color(1f, 1f, 1f, 0f);
             }
         }
+    }
+
+    public void CreateRoom()
+    {
+        var manager = RoomManager.singleton;
+        // 방 설정 작업 처리
+        //
+        //
+        manager.StartHost();
     }
 }
 

@@ -113,7 +113,7 @@ public class PlayerStat : MonoBehaviour
         }
     }
     /// <summary>
-    /// »ç¿ëÇÏ±â Àü¿¡ ¹İµå½Ã speedlevel¼³Á¤À» ÇØÁÙ°Í
+    /// ì‚¬ìš©í•˜ê¸° ì „ì— ë°˜ë“œì‹œ speedlevelì„¤ì •ì„ í•´ì¤„ê²ƒ
     /// </summary>
     public PlayerSpeed playerSpeed;
 
@@ -139,7 +139,7 @@ public class PlayerStat : MonoBehaviour
     }
 
     /// <summary>
-    /// ½ºÇÇµå ·¹º§¿¡ ¸Â°Ô ½ºÅİÀ» ÃÊ±âÈ­ÇÕ´Ï´Ù.
+    /// ìŠ¤í”¼ë“œ ë ˆë²¨ì— ë§ê²Œ ìŠ¤í…Ÿì„ ì´ˆê¸°í™”í•©ë‹ˆë‹¤.
     /// </summary>
     public void InitSpeedLevel()
     {
@@ -160,7 +160,7 @@ public class PlayerSpeed
     public float Rot { get { return rot; } }
 
     /// <summary>
-    /// level¿¡ ¸Â°Ô ¾Ç¼¿ ÅäÅ© ·ÎÅ×ÀÌ¼Ç°ªÀ» ¼³Á¤ÇØÁİ´Ï´Ù.
+    /// levelì— ë§ê²Œ ì•…ì…€ í† í¬ ë¡œí…Œì´ì…˜ê°’ì„ ì„¤ì •í•´ì¤ë‹ˆë‹¤.
     /// </summary>
     /// <param name="level"></param>
     public void setSpeedLevel(int level)

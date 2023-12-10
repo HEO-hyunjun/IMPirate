@@ -10,12 +10,12 @@ using System;
 [CreateAssetMenu(fileName = "Item", menuName = "Scriptable Object/Item", order = int.MaxValue)]
 public class Item : ScriptableObject
 {
-    //¾ÆÀÌÅÛ ºĞ·ù
-    // 1: È¹µæ¾ÆÀÌÅÛ
-    // 2: »ç¿ë¾ÆÀÌÅÛ
+    //ì•„ì´í…œ ë¶„ë¥˜
+    // 1: íšë“ì•„ì´í…œ
+    // 2: ì‚¬ìš©ì•„ì´í…œ
     public int itemID;
     public string itemName;
-    [Tooltip("¾ÆÀÌÅÛ ¼³¸í")]
+    [Tooltip("ì•„ì´í…œ ì„¤ëª…")]
     [SerializeField]
     private string descript;
     public string Descript
@@ -32,8 +32,8 @@ public class Item : ScriptableObject
     private string getDescription()
     {
         string ret = descript;
-        ret = ret.Replace("a",duration.ToString());
-        ret = ret.Replace("b",changeStatAmount.ToString());
+        ret = ret.Replace("a", duration.ToString());
+        ret = ret.Replace("b", changeStatAmount.ToString());
         return ret;
     }
 }

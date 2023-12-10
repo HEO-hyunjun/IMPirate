@@ -9,7 +9,7 @@ using static UnityEditor.Progress;
 [RequireComponent(typeof(PlayerStatSystem))]
 public class ItemSystem : MonoBehaviour
 {
-    #region ¾ÆÀÌÅÛ°ü·Ã Å¬·¡½º
+    #region ì•„ì´í…œê´€ë ¨ í´ë˜ìŠ¤
     [System.Serializable]
     public class ItemSlot
     {
@@ -17,32 +17,32 @@ public class ItemSystem : MonoBehaviour
         public bool isFull = false;
         [MMFReadOnly]
         public Item item;
-        [Tooltip("¾ÆÀÌÅÛÀÌ Ã¤¿öÁú UI 1¹ø 2¹ø")]
+        [Tooltip("ì•„ì´í…œì´ ì±„ì›Œì§ˆ UI 1ë²ˆ 2ë²ˆ")]
         public Image EmptyImage;
-        [Tooltip("»ç¿ëÁßÀÏ¶§ Image¿¡ Àû¿ëÇÒ ÇÇµå¹é")]
-        public MMF_Player usingItemFeedback; //±ôºı°Å¸®´Â°Å + Ä¿Á³´ÙÀÛ¾ÆÁ³´Ù
+        [Tooltip("ì‚¬ìš©ì¤‘ì¼ë•Œ Imageì— ì ìš©í•  í”¼ë“œë°±")]
+        public MMF_Player usingItemFeedback; //ê¹œë¹¡ê±°ë¦¬ëŠ”ê±° + ì»¤ì¡Œë‹¤ì‘ì•„ì¡Œë‹¤
     }
     [System.Serializable]
     public class ItemDataSource
     {
         public Item item;
-        [Tooltip("¾ÆÀÌÅÛÀ» »ç¿ëÇßÀ»¶§ »ç¿ëÀÚÃø¿¡¼­ ½ÇÇàµÉ ÇÇµå¹é")]
-        public MMF_Player feedback; // È¹µæ¾ÆÀÌÅÛÀÌ¸é ÁÖº¯¿¡ ±×³É »ö±òº° ¿À¿À¶ó, »ç¿ë¾ÆÀÌÅÛÀÌ¶ó¸é ¾ÆÀÌÅÛ Á¾·ùº°·Î °øÅëµÈ ÇÇµå¹é + ¼³¸í
+        [Tooltip("ì•„ì´í…œì„ ì‚¬ìš©í–ˆì„ë•Œ ì‚¬ìš©ìì¸¡ì—ì„œ ì‹¤í–‰ë  í”¼ë“œë°±")]
+        public MMF_Player feedback; // íšë“ì•„ì´í…œì´ë©´ ì£¼ë³€ì— ê·¸ëƒ¥ ìƒ‰ê¹”ë³„ ì˜¤ì˜¤ë¼, ì‚¬ìš©ì•„ì´í…œì´ë¼ë©´ ì•„ì´í…œ ì¢…ë¥˜ë³„ë¡œ ê³µí†µëœ í”¼ë“œë°± + ì„¤ëª…
     }
     #endregion
 
-    [Tooltip("ÃÖ´ë 2°³ÀÇ ½½·Ô¸¸ ÀÖ´Ù°í °¡Á¤ÇÔ")]
+    [Tooltip("ìµœëŒ€ 2ê°œì˜ ìŠ¬ë¡¯ë§Œ ìˆë‹¤ê³  ê°€ì •í•¨")]
     public List<ItemSlot> itemSlot;
-    [Tooltip("¾ÆÀÌÅÛ »ç¿ëÁßÀÏ¶§ itemSlot¿¡ Àû¿ëÇÒ ÇÇµå¹é")]
-    public MMF_Player itemUsingCoolDownFeedback; // ¾ÆÀÌÅÛ½½·ÔÂÊ¿¡ È¸»ö Åõ¸íÇÑ ¿À¹ö·¹ÀÌ¾º¿ì±â
-    [Tooltip("¾ÆÀÌÅÛÀ» È¹µæÇßÀ»¶§ Àç»ıÇÒ ÆÄÆ¼Å¬ ÇÇµå¹é")]
-    public MMF_Player itemGetFeedback; // ÇÃ·¹ÀÌ¾îÈ­¸é Äµ¹ö½º¿¡ ¶ç¿ï UI¿¡ ¼³¸í
-    [Tooltip("¾ÆÀÌÅÛ ¼³¸íUI Àç»ıÇÒ ÇÇµå¹é")]
-    public MMF_Player itemUIFeedback; // ÇÃ·¹ÀÌ¾îÈ­¸é Äµ¹ö½º¿¡ ¶ç¿ï UI¿¡ ¼³¸í
+    [Tooltip("ì•„ì´í…œ ì‚¬ìš©ì¤‘ì¼ë•Œ itemSlotì— ì ìš©í•  í”¼ë“œë°±")]
+    public MMF_Player itemUsingCoolDownFeedback; // ì•„ì´í…œìŠ¬ë¡¯ìª½ì— íšŒìƒ‰ íˆ¬ëª…í•œ ì˜¤ë²„ë ˆì´ì”Œìš°ê¸°
+    [Tooltip("ì•„ì´í…œì„ íšë“í–ˆì„ë•Œ ì¬ìƒí•  íŒŒí‹°í´ í”¼ë“œë°±")]
+    public MMF_Player itemGetFeedback; // í”Œë ˆì´ì–´í™”ë©´ ìº”ë²„ìŠ¤ì— ë„ìš¸ UIì— ì„¤ëª…
+    [Tooltip("ì•„ì´í…œ ì„¤ëª…UI ì¬ìƒí•  í”¼ë“œë°±")]
+    public MMF_Player itemUIFeedback; // í”Œë ˆì´ì–´í™”ë©´ ìº”ë²„ìŠ¤ì— ë„ìš¸ UIì— ì„¤ëª…
     public Image itemDescriptImage;
 
 
-    [Tooltip("ÇÃ·¹ÀÌ¾îÃø¿¡¼­ Àç»ıÇÒ ÇÇµå¹éÀ» ¾ÆÀÌÅÛ Á¾·ùº°·Î ´ã¾ÆµÎ´Â µ¥ÀÌÅÍº£ÀÌ½º")]
+    [Tooltip("í”Œë ˆì´ì–´ì¸¡ì—ì„œ ì¬ìƒí•  í”¼ë“œë°±ì„ ì•„ì´í…œ ì¢…ë¥˜ë³„ë¡œ ë‹´ì•„ë‘ëŠ” ë°ì´í„°ë² ì´ìŠ¤")]
     public List<ItemDataSource> ItemDataList;
     public GameObject minePrefab;
     private PlayerStatSystem statSystem;
@@ -59,16 +59,16 @@ public class ItemSystem : MonoBehaviour
             UseItemSlot(1);
     }
 
-    #region ¾ÆÀÌÅÛ È¹µæ ~ »ç¿ë±îÁöÀÇ ÇÔ¼öµé
+    #region ì•„ì´í…œ íšë“ ~ ì‚¬ìš©ê¹Œì§€ì˜ í•¨ìˆ˜ë“¤
     /// <summary>
-    /// ÇÃ·¹ÀÌ¾î°¡ ¾ÆÀÌÅÛÀ» ¸Ô¾úÀ»¶§ ½ÃÀÛµÇ´Â ÇÔ¼ö
+    /// í”Œë ˆì´ì–´ê°€ ì•„ì´í…œì„ ë¨¹ì—ˆì„ë•Œ ì‹œì‘ë˜ëŠ” í•¨ìˆ˜
     /// </summary>
     /// <param name="itemID"></param>
     public void GetItem(int itemID)
     {
-        //¾ÆÀÌÅÛ Ä«Å×°í¸® 1000ÀÚ¸®¼ö°¡
-        // 1: È¹µæ¾ÆÀÌÅÛ
-        // 2: »ç¿ë¾ÆÀÌÅÛ
+        //ì•„ì´í…œ ì¹´í…Œê³ ë¦¬ 1000ìë¦¬ìˆ˜ê°€
+        // 1: íšë“ì•„ì´í…œ
+        // 2: ì‚¬ìš©ì•„ì´í…œ
         int itemCategory = itemID / 1000;
         itemGetFeedback.PlayFeedbacks();
 
@@ -76,17 +76,17 @@ public class ItemSystem : MonoBehaviour
 
         switch (itemCategory)
         {
-            case 1: // È¹µæ ¾ÆÀÌÅÛ -> ¹Ù·Î È¿°úÀû¿ë
+            case 1: // íšë“ ì•„ì´í…œ -> ë°”ë¡œ íš¨ê³¼ì ìš©
                 UseItem(itemID);
                 break;
-            case 2: // »ç¿ë ¾ÆÀÌÅÛ -> ¾ÆÀÌÅÛ½½·Ô¿¡ ÀúÀå
+            case 2: // ì‚¬ìš© ì•„ì´í…œ -> ì•„ì´í…œìŠ¬ë¡¯ì— ì €ì¥
                 PushItem(itemID);
                 break;
         }
     }
 
     /// <summary>
-    /// ¾ÆÀÌÅÛ½½·Ô¿¡ ¾ÆÀÌÅÛÀ» ¹Ğ¾î³Ö´Â ÇÔ¼ö
+    /// ì•„ì´í…œìŠ¬ë¡¯ì— ì•„ì´í…œì„ ë°€ì–´ë„£ëŠ” í•¨ìˆ˜
     /// </summary>
     /// <param name="itemID"></param>
     private void PushItem(int itemID)
@@ -100,7 +100,7 @@ public class ItemSystem : MonoBehaviour
                 break;
             }
         }
-        //¾ÆÀÌÅÛ ½½·ÔÀÌ ²Ë Ã¡´Ù¸é ¹«½Ã
+        //ì•„ì´í…œ ìŠ¬ë¡¯ì´ ê½‰ ì°¼ë‹¤ë©´ ë¬´ì‹œ
         if (findIDX == -1)
             return;
         itemSlot[findIDX].isFull = true;
@@ -112,12 +112,12 @@ public class ItemSystem : MonoBehaviour
 
 
     /// <summary>
-    /// Æ¯Á¤ÀÎµ¦½ºÀÇ ¾ÆÀÌÅÛ½½·Ô ¾ÆÀÌÅÛÀ» »ç¿ëÇÏ´Â ÇÔ¼ö
+    /// íŠ¹ì •ì¸ë±ìŠ¤ì˜ ì•„ì´í…œìŠ¬ë¡¯ ì•„ì´í…œì„ ì‚¬ìš©í•˜ëŠ” í•¨ìˆ˜
     /// </summary>
     /// <param name="index"></param>
     public void UseItemSlot(int index)
     {
-        //¾ÆÀÌÅÛ½½·Ô¿¡¼­ ¾ÆÀÌÅÛ ¾ÆÀÌµğ¸¦ °¡Á®¿Í¼­ ÇØ´ç ÇÔ¼ö »ç¿ë
+        //ì•„ì´í…œìŠ¬ë¡¯ì—ì„œ ì•„ì´í…œ ì•„ì´ë””ë¥¼ ê°€ì ¸ì™€ì„œ í•´ë‹¹ í•¨ìˆ˜ ì‚¬ìš©
         if (itemSlot[index].item == null)
             return;
 
@@ -134,9 +134,9 @@ public class ItemSystem : MonoBehaviour
     }
 
     /// <summary>
-    /// ¾ÆÀÌÅÛ ¾ÆÀÌµğ¿¡µû¶ó¼­ ÇØ´çÇÏ´Â Á¶°Ç °Ë»çÈÄ ÇØ´ç ÇÔ¼ö »ç¿ë
-    /// ¾ÆÀÌÅÛº°·Î ÇÔ¼ö´Â µû·Î »ç¿ë
-    /// ¾ÆÀÌÅÛ »ç¿ëÀÌ ¹«½ÃµÆ´Ù¸é False ¹İÈ¯
+    /// ì•„ì´í…œ ì•„ì´ë””ì—ë”°ë¼ì„œ í•´ë‹¹í•˜ëŠ” ì¡°ê±´ ê²€ì‚¬í›„ í•´ë‹¹ í•¨ìˆ˜ ì‚¬ìš©
+    /// ì•„ì´í…œë³„ë¡œ í•¨ìˆ˜ëŠ” ë”°ë¡œ ì‚¬ìš©
+    /// ì•„ì´í…œ ì‚¬ìš©ì´ ë¬´ì‹œëë‹¤ë©´ False ë°˜í™˜
     /// </summary>
     /// <param name="itemID"></param>
     /// <returns></returns>
@@ -155,7 +155,7 @@ public class ItemSystem : MonoBehaviour
             FindFeedbackByID(item.itemID)?.PlayFeedbacks();
             switch (itemID)
             {
-                // È¹µæ¾ÆÀÌÅÛ
+                // íšë“ì•„ì´í…œ
                 case 101:
                     statSystem.RemainBullet += (int)item.changeStatAmount;
                     return true;
@@ -166,7 +166,7 @@ public class ItemSystem : MonoBehaviour
                     statSystem.addSpeedLevel((int)item.changeStatAmount);
                     return true;
                 case 104:
-                    if ((statSystem.isUsingItem / 10) == 203) //¾ÆÀÌÅÛ¹öÇÁ¹Ş´ÂÁßÀÌ¶ó¸é,
+                    if ((statSystem.isUsingItem / 10) == 203) //ì•„ì´í…œë²„í”„ë°›ëŠ”ì¤‘ì´ë¼ë©´,
                         statSystem.tmpAttack += item.changeStatAmount;
                     statSystem.Attack += item.changeStatAmount;
                     return true;
@@ -175,7 +175,7 @@ public class ItemSystem : MonoBehaviour
                     return true;
             }
         }
-        if (statSystem.isUsingItem != 0) // ´Ù¸¥ ¾ÆÀÌÅÛ »ç¿ëÁß
+        if (statSystem.isUsingItem != 0) // ë‹¤ë¥¸ ì•„ì´í…œ ì‚¬ìš©ì¤‘
             return false;
         statSystem.Score += 5;
         statSystem.TempModifyItemUsing(item.duration, item.itemID);
@@ -192,7 +192,7 @@ public class ItemSystem : MonoBehaviour
 
         switch (itemID)
         {
-            // »ç¿ë¾ÆÀÌÅÛ
+            // ì‚¬ìš©ì•„ì´í…œ
             case 201:
                 statSystem.TempModifyRelativeSpeed(item.duration, (int)item.changeStatAmount);
                 return true;
@@ -202,13 +202,13 @@ public class ItemSystem : MonoBehaviour
             case 203:
                 statSystem.TempMultiplyAttack(item.duration, item.changeStatAmount);
                 return true;
-            case 204: //¹«Àû
+            case 204: //ë¬´ì 
                 return true;
             case 205:
                 statSystem.TempMultiplyAttackInterval(itemID, item.changeStatAmount);
                 return true;
             case 206:
-                //Áö·ÚÈ¹µæ¾ÆÀÌÅÛ(105) ¼³Ä¡
+                //ì§€ë¢°íšë“ì•„ì´í…œ(105) ì„¤ì¹˜
                 GameObject mine = Instantiate(minePrefab);
                 mine.transform.position = transform.position;
                 ItemGiver mineItemGiver = mine.GetComponent<ItemGiver>();
@@ -220,7 +220,7 @@ public class ItemSystem : MonoBehaviour
     }
     #endregion
 
-    #region ·ÎÁ÷±¸ÇöÀ» À§ÇÑ º¸Á¶ÇÔ¼öµé
+    #region ë¡œì§êµ¬í˜„ì„ ìœ„í•œ ë³´ì¡°í•¨ìˆ˜ë“¤
     private void SetPauseDuration(MMF_Player feedback, float duration)
     {
         MMF_Pause pause = feedback.GetFeedbackOfType<MMF_Pause>(MMF_Player.AccessMethods.First, 0);
@@ -245,9 +245,9 @@ public class ItemSystem : MonoBehaviour
 
         List<MMF_TMPText> texts = feedback.GetFeedbacksOfType<MMF_TMPText>();
         if (isGet)
-            texts[0].NewText = "È¹µæ: " + item.itemName;
+            texts[0].NewText = "íšë“: " + item.itemName;
         else
-            texts[0].NewText = "»ç¿ë: " + item.itemName;
+            texts[0].NewText = "ì‚¬ìš©: " + item.itemName;
 
         texts[1].NewText = item.Descript;
     }

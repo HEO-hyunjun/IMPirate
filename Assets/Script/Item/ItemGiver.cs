@@ -12,7 +12,7 @@ public class ItemGiver : MonoBehaviour
     [MMFReadOnly]
     private ItemSystem targetItemSystem;
     private PlayerStatSystem targetStatSystem;
-    [Tooltip("¾ÆÀÌÅÛÀ» È¹µæÇßÀ»¶§ ¾ÆÀÌÅÛÃø¿¡¼­ ½ÇÇàµÉ ÇÇµå¹é")]
+    [Tooltip("ì•„ì´í…œì„ íšë“í–ˆì„ë•Œ ì•„ì´í…œì¸¡ì—ì„œ ì‹¤í–‰ë  í”¼ë“œë°±")]
     public MMF_Player whenCollide;
     public string installer = "developer";
 

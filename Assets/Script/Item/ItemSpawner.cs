@@ -12,13 +12,14 @@ public class ItemSpawner : MonoBehaviour
     [SerializeField]
     [MMReadOnly]
     private bool isCoolDown = false;
-    private bool isManagerExist {
+    private bool isManagerExist
+    {
         get { return ItemSpawnManager.instance != null; }
     }
 
     void SpawnItemHere()
     {
-        if (spawnedItem != null || isCoolDown || !isManagerExist )
+        if (spawnedItem != null || isCoolDown || !isManagerExist)
             return;
 
         spawnedItem = Instantiate(ItemSpawnManager.instance.SpawnItem());

@@ -9,7 +9,7 @@ public class OnCollideDamage : MonoBehaviour
     private PlayerStatSystem targetStatSystem;
 
     public MMF_Player whenStart;
-    public MMF_Player whenCollide;
+    public MMF_Player whenCollidae;
     public float damage = 10f;
     private void Awake()
     {
