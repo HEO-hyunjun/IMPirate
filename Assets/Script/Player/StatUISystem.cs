@@ -8,7 +8,7 @@ using UnityEngine.UI;
 
 public class StatUISystem : MonoBehaviour
 {
-    [Tooltip("«√∑π¿ÃæÓ Ω∫≈›¿ª ≥÷æÓ¡÷ººø‰")]
+    [Tooltip("ÌîåÎ†àÏù¥Ïñ¥ Ïä§ÌÖüÏùÑ ÎÑ£Ïñ¥Ï£ºÏÑ∏Ïöî")]
     public PlayerStat source;
     [Space(5)]
     [Header("HP")]
@@ -63,9 +63,9 @@ public class StatUISystem : MonoBehaviour
 
         HPText.text = String.Format("{0}/{1}", source.Hp, source.Max_hp);
 
-        if (hp > source.Hp) // ±‚¡∏ hp∫∏¥Ÿ ¡ŸæÓµÍ -> µ•πÃ¡ˆ
+        if (hp > source.Hp) // Í∏∞Ï°¥ hpÎ≥¥Îã§ Ï§ÑÏñ¥Îì¶ -> Îç∞ÎØ∏ÏßÄ
             DamageHP();
-        else // ±‚¡∏∫∏¥Ÿ hp∞° ∏π¿Ω -> »˙
+        else // Í∏∞Ï°¥Î≥¥Îã§ hpÍ∞Ä ÎßéÏùå -> Ìûê
             HealHP();
 
         HPChangeFeedback?.PlayFeedbacks();
@@ -132,7 +132,7 @@ public class StatUISystem : MonoBehaviour
         if (nowSpeedLevel == speedLevel)
             return;
 
-        speedLevelText.text = String.Format("º”µµ∑π∫ß : {0} Lv", nowSpeedLevel);
+        speedLevelText.text = String.Format("ÏÜçÎèÑÎ†àÎ≤® : {0} Lv", nowSpeedLevel);
 
         if (speedLevelTextColor == null)
             speedLevelTextColor = SpeedChangeFeedback.GetFeedbackOfType<MMF_TMPColor>();

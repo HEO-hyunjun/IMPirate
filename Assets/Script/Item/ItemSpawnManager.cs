@@ -16,7 +16,7 @@ public class ItemSpawnManager : MonoBehaviour
         public GameObject itemPrefab;
         public float spawnProbability;
         [MMReadOnly]
-        public float calcProbability; 
+        public float calcProbability;
     }
     public List<ItemSpawnCandidate> spawnList;
     public float spawnCoolTime = 15f;
@@ -40,7 +40,7 @@ public class ItemSpawnManager : MonoBehaviour
 
     public void InitProbability()
     {
-        if (isInitiated) 
+        if (isInitiated)
             return;
 
         totalProbability = 0;
@@ -56,7 +56,7 @@ public class ItemSpawnManager : MonoBehaviour
     {
         InitProbability();
         float rand = Random.Range(0f, totalProbability);
-        foreach(var item in spawnList)
+        foreach (var item in spawnList)
         {
             if (item.calcProbability > rand)
                 return item.itemPrefab;

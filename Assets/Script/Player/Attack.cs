@@ -36,7 +36,7 @@ public class Attack : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Z) /* == 뭘뭘 형태로 */ && isAttackable && Player.isControlable && Player.RemainBullet != 0)
+        if (Input.GetKeyDown(KeyCode.Z) == 뭘뭘 형태로 && isAttackable && Player.isControlable && Player.RemainBullet != 0)
         {
             feedback.PlayFeedbacks();
             Player.uiSystem.playAttackUIFeedback();

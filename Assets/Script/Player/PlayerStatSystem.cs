@@ -16,8 +16,8 @@ public class PlayerStatSystem : PlayerStat
     private void Inititialize()
     {
         LoadStatObject();
-        //SetPlayerID("Base"); // ¼­¹ö ¿¬°áÇÒ¶§ °¢ ÇÃ·¹ÀÌ¾îº°·Î ´Ù¸£°Ô ¼¼ÆÃÇØ¾ßÇÔ
-        //isControlable = true;// ¼­¹ö ¿¬°áÇÒ¶§ °¢ ÇÃ·¹ÀÌ¾îº°·Î ´Ù¸£°Ô ¼¼ÆÃÇØ¾ßÇÔ
+        //SetPlayerID("Base"); // ì„œë²„ ì—°ê²°í• ë•Œ ê° í”Œë ˆì´ì–´ë³„ë¡œ ë‹¤ë¥´ê²Œ ì„¸íŒ…í•´ì•¼í•¨
+        //isControlable = true;// ì„œë²„ ì—°ê²°í• ë•Œ ê° í”Œë ˆì´ì–´ë³„ë¡œ ë‹¤ë¥´ê²Œ ì„¸íŒ…í•´ì•¼í•¨
 
         if (isControlable)
         {
@@ -37,7 +37,7 @@ public class PlayerStatSystem : PlayerStat
     }
     public void Damage(float damage)
     {
-        if (!isDead || (isUsingItem / 10) != 204) //¹«Àû¾ÆÀÌÅÛ »ç¿ëÁßÀÌ°Å³ª, Á×Áö ¾Ê¾Ò´Ù¸é,
+        if (!isDead || (isUsingItem / 10) != 204) //ë¬´ì ì•„ì´í…œ ì‚¬ìš©ì¤‘ì´ê±°ë‚˜, ì£½ì§€ ì•Šì•˜ë‹¤ë©´,
             Hp -= damage;
         if (isDead)
             Dead();
@@ -59,18 +59,18 @@ public class PlayerStatSystem : PlayerStat
     }
 
     /// <summary>
-    /// ÀÓ½Ã·Î ½ºÇÇµå ´Ü°è¸¦ Á¶Á¤ÇÏ´Â ÇÔ¼öÀÔ´Ï´Ù.
-    /// ÇÃ·¹ÀÌ¾îÀÇ ½ºÇÇµå·¹º§Àº º¯È­ÇÏÁö ¾ÊÀ½À¸·Î
-    /// ½ºÇÇµå ·¹º§À» ¹ÙÀ» º¯µ¿½ÃÅ°·Á¸é addSpeedLevelÇÔ¼ö¸¦ »ç¿ëÇÒ°Í
+    /// ì„ì‹œë¡œ ìŠ¤í”¼ë“œ ë‹¨ê³„ë¥¼ ì¡°ì •í•˜ëŠ” í•¨ìˆ˜ì…ë‹ˆë‹¤.
+    /// í”Œë ˆì´ì–´ì˜ ìŠ¤í”¼ë“œë ˆë²¨ì€ ë³€í™”í•˜ì§€ ì•ŠìŒìœ¼ë¡œ
+    /// ìŠ¤í”¼ë“œ ë ˆë²¨ì„ ë°”ì„ ë³€ë™ì‹œí‚¤ë ¤ë©´ addSpeedLevelí•¨ìˆ˜ë¥¼ ì‚¬ìš©í• ê²ƒ
     /// </summary>
     /// <param name="relativeLevel"></param>
     public void modifyRelativeSpeed(int relativeLevel)
     {
         playerSpeed.setSpeedLevel(Speed_level + relativeLevel);
-        uiSystem.updateSpeedLevel(); // ÀÓ½Ã·Î ¹Ù²Ù´Â ÇÔ¼ö µÚ¿¡´Â ¾÷µ¥ÀÌÆ®¸¦ ÇØÁà¾ßÇÕ´Ï´Ù.
+        uiSystem.updateSpeedLevel(); // ì„ì‹œë¡œ ë°”ê¾¸ëŠ” í•¨ìˆ˜ ë’¤ì—ëŠ” ì—…ë°ì´íŠ¸ë¥¼ í•´ì¤˜ì•¼í•©ë‹ˆë‹¤.
     }
     /// <summary>
-    /// ½ºÇÇµå·¹º§À» ¿Ã¸®±âÀ§ÇØ ¸¸µç ÇÔ¼öÀÔ´Ï´Ù.
+    /// ìŠ¤í”¼ë“œë ˆë²¨ì„ ì˜¬ë¦¬ê¸°ìœ„í•´ ë§Œë“  í•¨ìˆ˜ì…ë‹ˆë‹¤.
     /// </summary>
     /// <param name="add"></param>
     public void addSpeedLevel(int add)
@@ -79,11 +79,11 @@ public class PlayerStatSystem : PlayerStat
         InitSpeedLevel();
     }
 
-    #region »ç¿ë ¾ÆÀÌÅÛº° ÇÔ¼ö,ÄÚ·çÆ¾
+    #region ì‚¬ìš© ì•„ì´í…œë³„ í•¨ìˆ˜,ì½”ë£¨í‹´
     public void TempModifyRelativeSpeed(float t, int relativeLevel)
     {
         StartCoroutine(CorTempModifyRelativeSpeed(t, relativeLevel));
-        uiSystem.updateSpeedLevel(); // ÀÓ½Ã·Î ¹Ù²Ù´Â ÇÔ¼ö µÚ¿¡´Â ¾÷µ¥ÀÌÆ®¸¦ ÇØÁà¾ßÇÕ´Ï´Ù.
+        uiSystem.updateSpeedLevel(); // ì„ì‹œë¡œ ë°”ê¾¸ëŠ” í•¨ìˆ˜ ë’¤ì—ëŠ” ì—…ë°ì´íŠ¸ë¥¼ í•´ì¤˜ì•¼í•©ë‹ˆë‹¤.
     }
     private IEnumerator CorTempModifyRelativeSpeed(float t, int relativeLevel)
     {

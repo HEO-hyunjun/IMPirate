@@ -10,7 +10,7 @@ public class Movement : MonoBehaviour
 
     public GameObject player;
     private PlayerStatSystem stat;
-    public AnimationCode anime_a ;
+    public AnimationCode anime_a;
 
     Rigidbody rb;
     // 바퀴리스트
