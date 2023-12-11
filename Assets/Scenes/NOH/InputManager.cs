@@ -26,8 +26,8 @@ public class InputManager : MonoBehaviour
     private Vector3[] coordinates = new Vector3[33];
     private float left_elbow_angle;
     private float right_elbow_angle;
-    private float left_shoulder_angle;
-    private float right_shoulder_angle;
+    public float left_shoulder_angle;
+    public float right_shoulder_angle;
     private void classifyPose(Vector3[] coordinates)
     {
         /*for (int i = 0; i < coordinates.Length; i++) {
@@ -53,11 +53,15 @@ public class InputManager : MonoBehaviour
         }
         else
         {
+            if (left_shoulder_angle > 110) 
+                item[0] = true;
             if (left_shoulder_angle > 50)
                 leftArrowVal = Mathf.Min(left_shoulder_angle / 90, 1f);
             else
                 leftArrowVal = 0;
 
+            if (right_shoulder_angle > 110)
+                item[1] = true;
             if (right_shoulder_angle > 50)
                 rightArrowVal = Mathf.Min(right_shoulder_angle / 90, 1f);
             else
@@ -65,7 +69,6 @@ public class InputManager : MonoBehaviour
 
             isCancle = false;
             isOK = false;
-            item[0] = false; item[1] = false;
         }
 
     }

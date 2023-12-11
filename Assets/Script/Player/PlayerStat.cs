@@ -12,6 +12,9 @@ public class PlayerStat : MonoBehaviour
     public bool isControlable = false;
     public int isUsingItem = 0;
     [SerializeField]
+    [MMFReadOnly]
+    public bool isAttackable = true;
+    [SerializeField]
     protected string playerID;
     public string PlayerID
     {
@@ -165,8 +168,8 @@ public class PlayerSpeed
     /// <param name="level"></param>
     public void setSpeedLevel(int level)
     {
-        accel = 1000f + (level - 1) * 500f;
-        torque = 400f + (level - 1) * 50f;
+        accel = 500f + (level - 1) * 500f;
+        torque = 350f + (level - 1) * 50f;
         rot = 30f + Mathf.Min((level - 1), 6) * 5;
     }
     public int getSpeedLevel()

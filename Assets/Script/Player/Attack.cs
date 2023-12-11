@@ -17,9 +17,7 @@ public class Attack : MonoBehaviour
     public MMF_Player feedback;
 
 
-    [SerializeField]
-    [MMFReadOnly]
-    private bool isAttackable = true;
+    
     [SerializeField]
     [MMFReadOnly]
     private float deltaTime;
@@ -51,17 +49,17 @@ public class Attack : MonoBehaviour
         {
             deltaTime += Time.deltaTime;
             yield return null;
-            if (!isAttackable && deltaTime > Player.attackInterval)
+            if (!Player.isAttackable && deltaTime > Player.attackInterval)
             {
                 deltaTime = 0;
-                isAttackable = true;
+                Player.isAttackable = true;
             }
         }
     }
 
     private void doAttack()
     {
-        if (!isAttackable || !Player.isControlable || Player.RemainBullet == 0)
+        if (!Player.isAttackable || !Player.isControlable || Player.RemainBullet == 0)
             return;
         if (Player.animatorController != null)
             Player.animatorController.TriggerOk();
@@ -81,6 +79,6 @@ public class Attack : MonoBehaviour
         onCollideDamage.ownerStatSystem = Player;
         onCollideDamage.damage = Player.Attack;
         deltaTime = 0;
-        isAttackable = false;
+        Player.isAttackable = false;
     }
 }

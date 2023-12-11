@@ -9,13 +9,13 @@ public class Movement : MonoBehaviour
     public float left;
     public float leftTimer;
     public float front;
+    public float back;
     public float frontTimer;
     public bool keepGoing = false;
 
     public GameObject player;
     public float dirInterval = 0.5f;
     private PlayerStatSystem stat;
-    public AnimationCode anime_a;
 
     Rigidbody rb;
     // 바퀴리스트
@@ -45,11 +45,13 @@ public class Movement : MonoBehaviour
 
         left = Input.GetKey(KeyCode.LeftArrow) ? 1 : 0;
         right = Input.GetKey(KeyCode.RightArrow) ? 1 : 0;
+        back = Input.GetKey(KeyCode.DownArrow) ? 2 : 0;
 
-        if(InputManager.instance != null && InputManager.instance.isPoseDetect)
+        if (InputManager.instance != null && InputManager.instance.isPoseDetect)
         {
             left = InputManager.instance.leftArrowVal;
             right = InputManager.instance.rightArrowVal;
+            back = InputManager.instance.isCancle ? 2: 0;
         }
 
         front = Mathf.Max(left, right);
@@ -82,7 +84,18 @@ public class Movement : MonoBehaviour
                 keepGoing = true;
             }
 
-            if(gap < 0.4f)
+            if (back != 0 && !keepGoing)
+            { 
+                stat.animatorController.TriggerNo();
+                keepGoing = true;
+            }
+
+            if(back != 0)
+            {
+                stat.isAttackable = false;
+            }
+
+            if (gap < 0.4f)
                 frontTimer -= Time.deltaTime;
             if (left > 0.5f && gap > 0.4f)
                 leftTimer -= Time.deltaTime;
@@ -95,14 +108,14 @@ public class Movement : MonoBehaviour
                 leftTimer = dirInterval;
                 rightTimer = dirInterval;
             }
-            if(keepGoing && frontTimer + leftTimer + rightTimer  == dirInterval * 3)
+            if(keepGoing && frontTimer + leftTimer + rightTimer  == dirInterval * 3 && back == 0)
                 keepGoing = false;
         }
 
         rb.AddForce(transform.rotation * new Vector3(0, 0, front * stat.playerSpeed.Accel));
         for (int i = 2; i < 4; i++)
         {
-            wheels[i].motorTorque = stat.playerSpeed.Torque * front;
+            wheels[i].motorTorque = stat.playerSpeed.Torque * (front - back);
         }
 
         for (int i = 0; i < 2; i++)
