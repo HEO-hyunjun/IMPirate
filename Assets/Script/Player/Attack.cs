@@ -36,25 +36,12 @@ public class Attack : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Z) == 뭘뭘 형태로 && isAttackable && Player.isControlable && Player.RemainBullet != 0)
+        if (Input.GetKeyDown(KeyCode.Z))
+            doAttack();
+        if (InputManager.instance != null && InputManager.instance.isPoseDetect)
         {
-            feedback.PlayFeedbacks();
-            Player.uiSystem.playAttackUIFeedback();
-
-            attack = Instantiate(AttackObject);
-            attack.transform.position = AttackSpawnPosition.position;
-            attack.transform.forward = transform.forward;
-
-            attackRb = attack.GetComponent<Rigidbody>();
-            attackRb.AddForce((attack.transform.forward + new Vector3(0, 1 * attack.transform.forward.y, 0)) * attackPower);
-
-            Player.RemainBullet--;
-
-            OnCollideDamage onCollideDamage = attack.GetComponent<OnCollideDamage>();
-            onCollideDamage.ownerStatSystem = Player;
-            onCollideDamage.damage = Player.Attack;
-            deltaTime = 0;
-            isAttackable = false;
+            if (InputManager.instance.isOK)
+                doAttack();
         }
     }
 
@@ -70,5 +57,30 @@ public class Attack : MonoBehaviour
                 isAttackable = true;
             }
         }
+    }
+
+    private void doAttack()
+    {
+        if (!isAttackable || !Player.isControlable || Player.RemainBullet == 0)
+            return;
+        if (Player.animatorController != null)
+            Player.animatorController.TriggerOk();
+        feedback.PlayFeedbacks();
+        Player.uiSystem.playAttackUIFeedback();
+
+        attack = Instantiate(AttackObject);
+        attack.transform.position = AttackSpawnPosition.position;
+        attack.transform.forward = transform.forward;
+
+        attackRb = attack.GetComponent<Rigidbody>();
+        attackRb.AddForce((attack.transform.forward + new Vector3(0, 1 * attack.transform.forward.y, 0)) * attackPower);
+
+        Player.RemainBullet--;
+
+        OnCollideDamage onCollideDamage = attack.GetComponent<OnCollideDamage>();
+        onCollideDamage.ownerStatSystem = Player;
+        onCollideDamage.damage = Player.Attack;
+        deltaTime = 0;
+        isAttackable = false;
     }
 }

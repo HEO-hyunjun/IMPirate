@@ -12,6 +12,7 @@ using Cinemachine;
 // statsystem contain method, playerstat
 public class PlayerStatSystem : PlayerStat
 {
+    public AnimatorController animatorController;
     public CinemachineVirtualCamera cam;
     private void Inititialize()
     {
@@ -38,7 +39,11 @@ public class PlayerStatSystem : PlayerStat
     public void Damage(float damage)
     {
         if (!isDead || (isUsingItem / 10) != 204) //무적아이템 사용중이거나, 죽지 않았다면,
+        { 
             Hp -= damage;
+            if(animatorController != null)
+                animatorController.TriggerHit();
+        }
         if (isDead)
             Dead();
     }

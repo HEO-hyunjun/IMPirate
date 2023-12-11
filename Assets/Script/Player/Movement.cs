@@ -4,11 +4,16 @@ using UnityEngine;
 
 public class Movement : MonoBehaviour
 {
-    float right;
-    float left;
-    float front;
+    public float right;
+    public float rightTimer;
+    public float left;
+    public float leftTimer;
+    public float front;
+    public float frontTimer;
+    public bool keepGoing = false;
 
     public GameObject player;
+    public float dirInterval = 0.5f;
     private PlayerStatSystem stat;
     public AnimationCode anime_a;
 
@@ -24,20 +29,76 @@ public class Movement : MonoBehaviour
         if (player == null)
             return;
         stat = player.GetComponent<PlayerStatSystem>();
+        frontTimer = dirInterval;
+        leftTimer = dirInterval;
+        rightTimer = dirInterval;
     }
 
     private void Awake()
     {
         Initialize();
     }
-    private void FixedUpdate()
+    private void Update()
     {
-        if (!stat.isControlable)
+        if (!stat.isControlable || stat.isDead)
             return;
 
         left = Input.GetKey(KeyCode.LeftArrow) ? 1 : 0;
         right = Input.GetKey(KeyCode.RightArrow) ? 1 : 0;
+
+        if(InputManager.instance != null && InputManager.instance.isPoseDetect)
+        {
+            left = InputManager.instance.leftArrowVal;
+            right = InputManager.instance.rightArrowVal;
+        }
+
         front = Mathf.Max(left, right);
+
+        if(stat.animatorController != null)
+        {
+            float gap = Mathf.Abs(left - right);
+            if (frontTimer <= 0 && front != 0 && gap < 0.2f && !keepGoing)
+            { 
+                stat.animatorController.TriggerFront();
+                frontTimer = dirInterval;
+                leftTimer = dirInterval;
+                rightTimer = dirInterval;
+                keepGoing = true;
+            }
+            if (leftTimer <= 0 && left > right + 0.3f && !keepGoing)
+            { 
+                stat.animatorController.TriggerLeft();
+                frontTimer = dirInterval;
+                leftTimer = dirInterval;
+                rightTimer = dirInterval;
+                keepGoing = true;
+            }
+            if(rightTimer <= 0 && right > left + 0.3f && !keepGoing)
+            {
+                stat.animatorController.TriggerRight();
+                frontTimer = dirInterval;
+                leftTimer = dirInterval;
+                rightTimer = dirInterval;
+                keepGoing = true;
+            }
+
+            if(gap < 0.4f)
+                frontTimer -= Time.deltaTime;
+            if (left > 0.5f && gap > 0.4f)
+                leftTimer -= Time.deltaTime;
+            if (right > 0.5f && gap > 0.4f)
+                rightTimer -= Time.deltaTime;
+
+            if(left < 0.5f && right < 0.5f && gap < 0.4f)
+            {
+                frontTimer = dirInterval;
+                leftTimer = dirInterval;
+                rightTimer = dirInterval;
+            }
+            if(keepGoing && frontTimer + leftTimer + rightTimer  == dirInterval * 3)
+                keepGoing = false;
+        }
+
         rb.AddForce(transform.rotation * new Vector3(0, 0, front * stat.playerSpeed.Accel));
         for (int i = 2; i < 4; i++)
         {

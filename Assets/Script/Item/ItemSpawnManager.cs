@@ -29,7 +29,7 @@ public class ItemSpawnManager : MonoBehaviour
         if (instance == null) //instance가 null. 즉, 시스템상에 존재하고 있지 않을때
         {
             instance = this; //내자신을 instance로 넣어줍니다.
-            DontDestroyOnLoad(gameObject); //OnLoad(씬이 로드 되었을때) 자신을 파괴하지 않고 유지
+            //DontDestroyOnLoad(gameObject); //OnLoad(씬이 로드 되었을때) 자신을 파괴하지 않고 유지
         }
         else
         {

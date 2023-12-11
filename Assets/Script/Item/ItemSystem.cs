@@ -57,6 +57,13 @@ public class ItemSystem : MonoBehaviour
             UseItemSlot(0);
         if (Input.GetKeyDown(KeyCode.W))
             UseItemSlot(1);
+        if (InputManager.instance != null && InputManager.instance.isPoseDetect)
+        {
+            if (InputManager.instance.item[0])
+                UseItemSlot(0);
+            else if (InputManager.instance.item[1])
+                UseItemSlot(1);
+        }
     }
 
     #region 아이템 획득 ~ 사용까지의 함수들
@@ -124,6 +131,9 @@ public class ItemSystem : MonoBehaviour
         if (!UseItem(itemSlot[index].item.itemID))
             return;
 
+        if (statSystem.animatorController != null)
+            statSystem.animatorController.TriggerUseItem();
+
         SetDescriptText(itemUIFeedback, itemSlot[index].item, false);
         itemUIFeedback.PlayFeedbacks();
 
@@ -153,6 +163,10 @@ public class ItemSystem : MonoBehaviour
         {
             itemUIFeedback.PlayFeedbacks();
             FindFeedbackByID(item.itemID)?.PlayFeedbacks();
+
+            if(statSystem.animatorController != null)
+                statSystem.animatorController.TriggerGetItem();
+
             switch (itemID)
             {
                 // 획득아이템

@@ -68003,7 +68003,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4206054109200613299}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.027242357, y: 0.0000000010749996, z: -2.92964e-11, w: 0.9996289}
+  m_LocalRotation: {x: 0.027242357, y: -0.0000000010749999, z: 2.9296402e-11, w: 0.9996289}
   m_LocalPosition: {x: 0, y: 13, z: -55}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -73364,7 +73364,7 @@ MonoBehaviour:
   CooldownDuration: 0
   InitialDelay: 0
   CanPlay: 1
-  CanPlayWhileAlreadyPlaying: 1
+  CanPlayWhileAlreadyPlaying: 0
   ChanceToPlay: 100
   FeedbacksIntensity: 1
   Events:
@@ -73490,10 +73490,19 @@ MonoBehaviour:
               inWeight: 0
               outWeight: 0
             - serializedVersion: 3
+              time: 0.7
+              value: 1.5
+              inSlope: 1.7931817
+              outSlope: 1.7931817
+              tangentMode: 0
+              weightedMode: 0
+              inWeight: 0.33333334
+              outWeight: 0.33333334
+            - serializedVersion: 3
               time: 1
               value: 1
-              inSlope: 0
-              outSlope: 0
+              inSlope: 2
+              outSlope: 2
               tangentMode: 0
               weightedMode: 0
               inWeight: 0
@@ -73651,7 +73660,7 @@ MonoBehaviour:
         RelativePosition: 1
         DeterminePositionsOnPlay: 1
         InitialPosition: {x: 0, y: 0, z: 0}
-        DestinationPosition: {x: 0, y: -1.5, z: 2}
+        DestinationPosition: {x: 0, y: -1.5, z: 3}
         InitialPositionTransform: {fileID: 0}
         DestinationPositionTransform: {fileID: 0}
         AnimatePositionCurveX:
@@ -84028,12 +84037,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4760503861945368083}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.44, z: 0.87}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalRotation: {x: -0.46113664, y: 0.5360532, z: 0.46113664, w: 0.5360532}
+  m_LocalPosition: {x: -42.734978, y: 94.44527, z: 0}
+  m_LocalScale: {x: 100, y: 100, z: 100}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 8098377544189751453}
+  m_Father: {fileID: 5906025752280735483}
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
 --- !u!108 &8943657452088522983
 Light:
@@ -89280,6 +89289,7 @@ MonoBehaviour:
   remainBullet: 15
   max_speed_level: 0
   speed_level: 0
+  animatorController: {fileID: 5622093225214404209}
   cam: {fileID: 6192198225107935891}
 --- !u!114 &690902114903707987
 MonoBehaviour:
@@ -89383,8 +89393,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eb8767289cd4f004b9c5c70c79761593, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  right: 0
+  rightTimer: 0
+  left: 0
+  leftTimer: 0
+  front: 0
+  frontTimer: 0
+  keepGoing: 0
   player: {fileID: 4927493909701314149}
-  anime_a: {fileID: 0}
+  dirInterval: 1
   wheels:
   - {fileID: 2005546515227596447}
   - {fileID: 7088934088045044952}
@@ -111569,6 +111586,8 @@ Transform:
   - {fileID: 8275155694194677521}
   - {fileID: 4040753386491512165}
   - {fileID: 5930158597435874208}
+  - {fileID: 7706621017042453893}
+  - {fileID: 2009844376102046610}
   m_Father: {fileID: 4974119331161921515}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &6262235344368484843
@@ -127905,12 +127924,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7870839839270940363}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
-  m_LocalPosition: {x: 0, y: 1.47, z: 1.77}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalRotation: {x: -0.46113664, y: 0.5360532, z: -0.46113664, w: -0.5360532}
+  m_LocalPosition: {x: -50.4, y: 159.5, z: 2.2}
+  m_LocalScale: {x: 100, y: 100, z: 100}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 8098377544189751453}
+  m_Father: {fileID: 5906025752280735483}
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!20 &8095290798979445281
 Camera:
@@ -131144,8 +131163,9 @@ GameObject:
   m_Component:
   - component: {fileID: 8098377544189751453}
   - component: {fileID: 4726702642507585611}
+  - component: {fileID: 5622093225214404209}
   m_Layer: 0
-  m_Name: Character_Pirate_Captain_01
+  m_Name: Character
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -131166,8 +131186,6 @@ Transform:
   m_Children:
   - {fileID: 3095506525221745949}
   - {fileID: 4974119331161921515}
-  - {fileID: 7706621017042453893}
-  - {fileID: 2009844376102046610}
   m_Father: {fileID: 8887744166342192926}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!95 &4726702642507585611
@@ -131180,10 +131198,10 @@ Animator:
   m_GameObject: {fileID: 8890703685245064097}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: 409520c9226982345a49c9803624f208, type: 3}
-  m_Controller: {fileID: 9100000, guid: 9b5f3dc79387670409bc8aac8597ddd2, type: 2}
+  m_Controller: {fileID: 9100000, guid: fac2d6a14061ef04ba3d52268498f386, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
-  m_ApplyRootMotion: 1
+  m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
   m_StabilizeFeet: 0
   m_WarningMessage: 
@@ -131191,6 +131209,26 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &5622093225214404209
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8890703685245064097}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 49d77e3e2128f4a48997371ac0baf808, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  leftFeedback: {fileID: 0}
+  rightFeedback: {fileID: 0}
+  forwardFeedback: {fileID: 0}
+  noFeedback: {fileID: 0}
+  okFeedback: {fileID: 0}
+  useItemFeedback: {fileID: 0}
+  getItemFeedback: {fileID: 0}
+  hitFeedback: {fileID: 0}
 --- !u!1 &8954883407346125793
 GameObject:
   m_ObjectHideFlags: 0
