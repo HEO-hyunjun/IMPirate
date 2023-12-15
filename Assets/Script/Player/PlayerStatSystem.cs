@@ -30,6 +30,7 @@ public class PlayerStatSystem : PlayerStat
             cam.gameObject.SetActive(false);
         }
         InitSpeedLevel();
+        uiSystem.updateSpeedLevel();
     }
 
     void Awake()

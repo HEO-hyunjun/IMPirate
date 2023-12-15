@@ -168,12 +168,12 @@ public class PlayerSpeed
     /// <param name="level"></param>
     public void setSpeedLevel(int level)
     {
-        accel = 500f + (level - 1) * 500f;
+        accel = 500f + (level - 1) * 150f;
         torque = 350f + (level - 1) * 50f;
         rot = 30f + Mathf.Min((level - 1), 6) * 5;
     }
     public int getSpeedLevel()
     {
-        return (int)(((accel - 500f) / 500f) + 1);
+        return (int)(((accel - 500f) / 150f) + 1);
     }
 }
