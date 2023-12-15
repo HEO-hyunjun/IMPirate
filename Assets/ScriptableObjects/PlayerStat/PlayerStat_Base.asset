@@ -16,5 +16,5 @@ MonoBehaviour:
   max_attack: 50
   attack: 10
   max_speed_level: 4
-  speed_level: 1
+  speed_level: 2
   attackInterval: 5
