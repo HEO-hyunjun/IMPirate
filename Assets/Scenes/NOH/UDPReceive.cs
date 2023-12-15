@@ -9,7 +9,8 @@ public class UDPReceive : MonoBehaviour
 {
 
     Thread receiveThread;
-    UdpClient client; 
+    UdpClient client;
+    public bool isError = false;
     public int port = 5052;
     public bool startRecieving = true;
     public bool printToConsole = false;
@@ -41,10 +42,12 @@ public class UDPReceive : MonoBehaviour
                 data = Encoding.UTF8.GetString(dataByte);
 
                 if (printToConsole) { print(data); }
+                isError = false;
             }
             catch (Exception err)
             {
                 print(err.ToString());
+                isError = true;
             }
         }
     }

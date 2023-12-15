@@ -8,7 +8,7 @@ public class InputManager : MonoBehaviour
     public UDPReceive udpReceive;
     public bool isPoseDetect
     {
-        get { return udpReceive != null; }
+        get { return udpReceive != null && udpReceive.isError != false ; }
     }
     public float narrowingFraction = 10;
     public static InputManager instance = null;
@@ -120,7 +120,8 @@ public class InputManager : MonoBehaviour
     void Update()
     {
         string data = udpReceive.data;
-
+        if (!isPoseDetect)
+            return;
         data = data.Remove(0, 1);
         data = data.Remove(data.Length-1, 1);
         
@@ -131,7 +132,7 @@ public class InputManager : MonoBehaviour
             float x = float.Parse(points[i * 3]);
             float y = float.Parse(points[i * 3 + 1]);
             float z = float.Parse(points[i * 3 + 2]); // 좌표 값 동기화
-            Body[i].transform.position = new Vector3(x, y, z)/narrowingFraction;
+            Body[i].transform.position = new Vector3(x, y, z) / narrowingFraction;
             coordinates[i] = new Vector3(x, y, z) / narrowingFraction;
         }
 

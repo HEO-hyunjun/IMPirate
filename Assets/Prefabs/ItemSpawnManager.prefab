@@ -47,15 +47,15 @@ MonoBehaviour:
   spawnList:
   - itemPrefab: {fileID: 8350193106453738794, guid: 328b0e1fda061d54ea92edf244ddd78c,
       type: 3}
-    spawnProbability: 5
+    spawnProbability: 8
     calcProbability: 0
   - itemPrefab: {fileID: 8350193106453738794, guid: 3b877d85ba7b0b24e82df71753313e6b,
       type: 3}
-    spawnProbability: 3
+    spawnProbability: 5
     calcProbability: 0
   - itemPrefab: {fileID: 8350193106453738794, guid: 00bc23445807d8643a55fd5e2ee3a73d,
       type: 3}
-    spawnProbability: 1
+    spawnProbability: 4
     calcProbability: 0
   - itemPrefab: {fileID: 7068824381464809433, guid: 703ea45b32c261f4aa00d1ea51e06fcb,
       type: 3}
@@ -124,5 +124,9 @@ MonoBehaviour:
   - itemPrefab: {fileID: 3516185756723504896, guid: d65c3b980acdbbf48bdc76b7151bab7b,
       type: 3}
     spawnProbability: 3
+    calcProbability: 0
+  - itemPrefab: {fileID: 800407163888407084, guid: ca331b83a3c43a8489c36929c427d296,
+      type: 3}
+    spawnProbability: 35
     calcProbability: 0
   spawnCoolTime: 30

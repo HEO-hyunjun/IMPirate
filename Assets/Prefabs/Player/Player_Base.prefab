@@ -89280,6 +89280,7 @@ MonoBehaviour:
   isDead: 0
   isControlable: 1
   isUsingItem: 0
+  isAttackable: 1
   playerID: test1
   hp: 0
   max_attack: 0
@@ -89379,7 +89380,6 @@ MonoBehaviour:
   attackPower: 10000
   AttackSpawnPosition: {fileID: 8727477546397170934}
   feedback: {fileID: 2746065412045187012}
-  isAttackable: 1
   deltaTime: 0
 --- !u!114 &1557579724268115240
 MonoBehaviour:
@@ -89398,6 +89398,7 @@ MonoBehaviour:
   left: 0
   leftTimer: 0
   front: 0
+  back: 0
   frontTimer: 0
   keepGoing: 0
   player: {fileID: 4927493909701314149}

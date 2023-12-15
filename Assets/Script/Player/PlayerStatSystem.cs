@@ -82,6 +82,7 @@ public class PlayerStatSystem : PlayerStat
     {
         Speed_level += add;
         InitSpeedLevel();
+        uiSystem.updateSpeedLevel();
     }
 
     #region 사용 아이템별 함수,코루틴
@@ -95,6 +96,7 @@ public class PlayerStatSystem : PlayerStat
         modifyRelativeSpeed(relativeLevel);
         yield return new WaitForSeconds(t);
         InitSpeedLevel();
+        uiSystem.updateSpeedLevel();
     }
 
     public void TempMultiplyAttack(float t, float multi)

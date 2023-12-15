@@ -174,6 +174,6 @@ public class PlayerSpeed
     }
     public int getSpeedLevel()
     {
-        return (int)(((accel - 1000f) / 500f) + 1);
+        return (int)(((accel - 500f) / 500f) + 1);
     }
 }

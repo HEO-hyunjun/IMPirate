@@ -853,6 +853,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player_Base
       objectReference: {fileID: 0}
+    - target: {fileID: 2749852755836532240, guid: 2d7e79057897aab4ea09a66dfa101f20,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.0000000010749999
+      objectReference: {fileID: 0}
+    - target: {fileID: 2749852755836532240, guid: 2d7e79057897aab4ea09a66dfa101f20,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 2.9296402e-11
+      objectReference: {fileID: 0}
     - target: {fileID: 8887744166342192926, guid: 2d7e79057897aab4ea09a66dfa101f20,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -11033,6 +11043,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 416367156}
     m_Modifications:
+    - target: {fileID: 63171987674728186, guid: 432550ea5d01c604db6725ada256f5b3,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2105215577793794045, guid: 432550ea5d01c604db6725ada256f5b3,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -11083,14 +11098,29 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3011533787450372783, guid: 432550ea5d01c604db6725ada256f5b3,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3850092602740423116, guid: 432550ea5d01c604db6725ada256f5b3,
         type: 3}
       propertyPath: m_Name
       value: InputManager
       objectReference: {fileID: 0}
+    - target: {fileID: 5395280572506799833, guid: 432550ea5d01c604db6725ada256f5b3,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7333765367141964416, guid: 432550ea5d01c604db6725ada256f5b3,
         type: 3}
       propertyPath: itemNum
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7924390260291818383, guid: 432550ea5d01c604db6725ada256f5b3,
+        type: 3}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8852005575789224346, guid: 432550ea5d01c604db6725ada256f5b3,
@@ -15230,22 +15260,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: ItemSpawnManager
-      objectReference: {fileID: 0}
-    - target: {fileID: 2910231367356398699, guid: 35167c1220ac5504ea0338ee3b6b25c3,
-        type: 3}
-      propertyPath: spawnList.Array.size
-      value: 21
-      objectReference: {fileID: 0}
-    - target: {fileID: 2910231367356398699, guid: 35167c1220ac5504ea0338ee3b6b25c3,
-        type: 3}
-      propertyPath: spawnList.Array.data[20].itemPrefab
-      value: 
-      objectReference: {fileID: 800407163888407084, guid: ca331b83a3c43a8489c36929c427d296,
-        type: 3}
-    - target: {fileID: 2910231367356398699, guid: 35167c1220ac5504ea0338ee3b6b25c3,
-        type: 3}
-      propertyPath: spawnList.Array.data[20].spawnProbability
-      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 7613765839059495073, guid: 35167c1220ac5504ea0338ee3b6b25c3,
         type: 3}
