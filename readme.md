@@ -54,7 +54,7 @@ Unity version : 2022.3.8f1<br>
     2. 프로젝트 폴더 접근
     3. `conda env create -f conda_requirements.yaml` 입력 <br>새로운 가상환경에 라이브러리 설치 
     4. `conda activate IMPirate` 입력 <br>가상환경 실행
-    5. `python MediaPipe/MotionCap.py` 입력 <br>모션캡쳐 프로그램 실행, esc입력시 종료 (선택)
+    5. `python MediaPipe/MotionCap.py` 입력 (선택) <br>모션캡쳐 프로그램 실행, esc입력시 종료
 - IMPirate.exe 실행
 ## 모션캡처 프로그램 미사용시 입력 키
 1. 좌, 우 : a,d / 화살표 키
