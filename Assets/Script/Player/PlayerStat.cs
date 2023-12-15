@@ -7,13 +7,15 @@ public class PlayerStat : MonoBehaviour
 {
     public PlayerStatObject source;
     public StatUISystem uiSystem;
-
+    #region 플레이어의 상태
     public bool isDead = false;
     public bool isControlable = false;
     public int isUsingItem = 0;
     [SerializeField]
     [MMFReadOnly]
     public bool isAttackable = true;
+    #endregion
+    #region 네트워크에 필요한 플레이어 정보
     [SerializeField]
     protected string playerID;
     public string PlayerID
@@ -31,6 +33,7 @@ public class PlayerStat : MonoBehaviour
             uiSystem.updateScore();
         }
     }
+    #endregion
     protected float max_hp;
     public float Max_hp
     {
@@ -61,7 +64,7 @@ public class PlayerStat : MonoBehaviour
         }
         get { return hp; }
     }
-
+    #region 공격관련
     public float max_attack;
     [SerializeField]
     protected float attack;
@@ -97,7 +100,8 @@ public class PlayerStat : MonoBehaviour
         }
         get { return remainBullet; }
     }
-
+    #endregion
+    #region 속도관련
     public int max_speed_level;
     [SerializeField]
     protected int speed_level;
@@ -119,7 +123,8 @@ public class PlayerStat : MonoBehaviour
     /// 사용하기 전에 반드시 speedlevel설정을 해줄것
     /// </summary>
     public PlayerSpeed playerSpeed;
-
+    #endregion
+    #region 초기화 메소드들
     public void SetPlayerID(string id)
     {
         playerID = id;
@@ -148,8 +153,9 @@ public class PlayerStat : MonoBehaviour
     {
         playerSpeed.setSpeedLevel(Speed_level);
     }
+    #endregion
 }
-
+#region PlayerSpeed Class
 public class PlayerSpeed
 {
     [SerializeField]
@@ -177,3 +183,4 @@ public class PlayerSpeed
         return (int)(((accel - 500f) / 150f) + 1);
     }
 }
+#endregion

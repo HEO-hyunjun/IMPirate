@@ -7,9 +7,9 @@ using MoreMountains.FeedbacksForThirdParty;
 using Cinemachine;
 
 // playerstatobject -> playerstat -> statsystem
-// playerstatobject data only
-// playerstat data + eventbase property + init data
-// statsystem contain method, playerstat
+// playerstatobject 데이터
+// playerstat 데이터 + 이벤트기반 프로퍼티 + 데이터 로드
+// statsystem 메소드
 public class PlayerStatSystem : PlayerStat
 {
     public AnimatorController animatorController;
@@ -37,6 +37,7 @@ public class PlayerStatSystem : PlayerStat
     {
         Inititialize();
     }
+    #region Stat 변경 함수들
     public void Damage(float damage)
     {
         if (!isDead || (isUsingItem / 10) != 204) //무적아이템 사용중이거나, 죽지 않았다면,
@@ -86,7 +87,6 @@ public class PlayerStatSystem : PlayerStat
         uiSystem.updateSpeedLevel();
     }
 
-    #region 사용 아이템별 함수,코루틴
     public void TempModifyRelativeSpeed(float t, int relativeLevel)
     {
         StartCoroutine(CorTempModifyRelativeSpeed(t, relativeLevel));

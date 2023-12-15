@@ -9,7 +9,9 @@ public class RoomManager : NetworkRoomManager
     {
         base.OnRoomServerConnect(conn);
 
-        var player = Instantiate(spawnPrefabs[0]);
+        var spawnPosition = FindObjectOfType<SpawnPositions>().GetSpawnPosition();
+
+        var player = Instantiate(spawnPrefabs[0], spawnPosition, Quaternion.identity);
         NetworkServer.Spawn(player, conn);
     }
 }
