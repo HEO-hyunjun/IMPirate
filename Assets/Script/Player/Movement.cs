@@ -52,16 +52,16 @@ public class Movement : NetworkBehaviour
         {
             left = InputManager.instance.leftArrowVal;
             right = InputManager.instance.rightArrowVal;
-            back = InputManager.instance.isCancle ? 2: 0;
+            back = InputManager.instance.isCancle ? 2 : 0;
         }
 
         front = Mathf.Max(left, right);
 
-        if(stat.animatorController != null)
+        if (stat.animatorController != null)
         {
             float gap = Mathf.Abs(left - right);
             if (frontTimer <= 0 && front != 0 && gap < 0.2f && !keepGoing)
-            { 
+            {
                 stat.animatorController.TriggerFront();
                 frontTimer = dirInterval;
                 leftTimer = dirInterval;
@@ -69,14 +69,14 @@ public class Movement : NetworkBehaviour
                 keepGoing = true;
             }
             if (leftTimer <= 0 && left > right + 0.3f && !keepGoing)
-            { 
+            {
                 stat.animatorController.TriggerLeft();
                 frontTimer = dirInterval;
                 leftTimer = dirInterval;
                 rightTimer = dirInterval;
                 keepGoing = true;
             }
-            if(rightTimer <= 0 && right > left + 0.3f && !keepGoing)
+            if (rightTimer <= 0 && right > left + 0.3f && !keepGoing)
             {
                 stat.animatorController.TriggerRight();
                 frontTimer = dirInterval;
@@ -86,12 +86,12 @@ public class Movement : NetworkBehaviour
             }
 
             if (back != 0 && !keepGoing)
-            { 
+            {
                 stat.animatorController.TriggerNo();
                 keepGoing = true;
             }
 
-            if(back != 0)
+            if (back != 0)
             {
                 stat.isAttackable = false;
             }
@@ -103,17 +103,18 @@ public class Movement : NetworkBehaviour
             if (right > 0.5f && gap > 0.4f)
                 rightTimer -= Time.deltaTime;
 
-            if(left < 0.5f && right < 0.5f && gap < 0.4f)
+            if (left < 0.5f && right < 0.5f && gap < 0.4f)
             {
                 frontTimer = dirInterval;
                 leftTimer = dirInterval;
                 rightTimer = dirInterval;
             }
-            if(keepGoing && frontTimer + leftTimer + rightTimer  == dirInterval * 3 && back == 0)
+            if (keepGoing && frontTimer + leftTimer + rightTimer == dirInterval * 3 && back == 0)
                 keepGoing = false;
         }
 
         rb.AddForce(transform.rotation * new Vector3(0, 0, front * stat.playerSpeed.Accel));
+        
         for (int i = 2; i < 4; i++)
         {
             wheels[i].motorTorque = stat.playerSpeed.Torque * (front - back);
