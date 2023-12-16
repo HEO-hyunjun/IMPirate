@@ -8,7 +8,7 @@ public class InputManager : MonoBehaviour
     public UDPReceive udpReceive;
     public bool isPoseDetect
     {
-        get { return udpReceive != null && udpReceive.isError != false ; }
+        get { return udpReceive != null && udpReceive.isError == false ; }
     }
     public float narrowingFraction = 10;
     public static InputManager instance = null;

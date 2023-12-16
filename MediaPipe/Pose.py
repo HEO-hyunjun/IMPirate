@@ -85,6 +85,7 @@ with mp_pose.Pose(
         
         angle = calculateAngle(RIGHT_SHOULDER, RIGHT_ELBOW, RIGHT_WRIST)
         angle_text = f'계산된 각도의 값은 {angle:.2f}입니다.'
+        print(angle_text)
         
         # 포즈 주석을 이미지 위에 그립니다.
         image.flags.writeable = True
