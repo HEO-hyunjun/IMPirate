@@ -17,9 +17,11 @@ public class ItemSpawner : NetworkBehaviour
     {
         get { return ItemSpawnManager.instance != null; }
     }
-    [Command]
+
     void SpawnItemHere()
     {
+        if (!isServer)
+            return;
         if (spawnedItem != null || isCoolDown || !isManagerExist)
             return;
 
@@ -27,11 +29,13 @@ public class ItemSpawner : NetworkBehaviour
 
         spawnedItem.transform.position = transform.position;
         spawnedItem.transform.parent = transform;
+
         NetworkServer.Spawn(spawnedItem);
     }
-
+    
     private void Start()
     {
+        
         SpawnItemHere();
     }
 

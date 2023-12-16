@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using MoreMountains;
 using MoreMountains.Tools;
+using Mirror;
 
 /// <summary>
 /// 싱글톤패턴으로 작성된 아이템 스폰 매니저

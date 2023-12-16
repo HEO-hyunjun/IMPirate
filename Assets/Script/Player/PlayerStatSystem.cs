@@ -18,8 +18,7 @@ public class PlayerStatSystem : PlayerStat
     {
         LoadStatObject();
         SetPlayerID(PlayerSettings.nickname); // 서버 연결할때 각 플레이어별로 다르게 세팅해야함
-        Debug.Log(PlayerSettings.nickname);
-        Debug.Log(PlayerID);
+
         //isControlable = true;// 서버 연결할때 각 플레이어별로 다르게 세팅해야함
 
         if (isControlable)

@@ -12,7 +12,6 @@ public class PlayerStat : NetworkBehaviour
     public bool isDead = false;
     public bool isControlable { 
         get {
-            Debug.Log(isOwned);
             return isOwned; 
         } 
     }

@@ -8,7 +8,7 @@ public class InputManager : MonoBehaviour
     public UDPReceive udpReceive;
     public bool isPoseDetect
     {
-        get { return udpReceive != null && udpReceive.isError == false ; }
+        get { return udpReceive != null && udpReceive.isError == false && udpReceive.data != "" && udpReceive.data != null; }
     }
     public float narrowingFraction = 10;
     public static InputManager instance = null;
@@ -122,9 +122,15 @@ public class InputManager : MonoBehaviour
         string data = udpReceive.data;
         if (!isPoseDetect)
             return;
-        data = data.Remove(0, 1);
-        data = data.Remove(data.Length-1, 1);
-        
+        try 
+        { 
+            data = data.Remove(0, 1);
+            data = data.Remove(data.Length-1, 1);
+        }
+        catch
+        {
+            return;
+        }
         string[] points = data.Split(',');
 
         for (int i = 0; i < 32; i++)
