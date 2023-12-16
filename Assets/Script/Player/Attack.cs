@@ -1,3 +1,4 @@
+using Mirror;
 using MoreMountains.Feedbacks;
 using System.Collections;
 using System.Collections.Generic;
@@ -6,7 +7,7 @@ using UnityEngine;
 
 [RequireComponent(typeof(PlayerStatSystem))]
 
-public class Attack : MonoBehaviour
+public class Attack : NetworkBehaviour
 {
     public PlayerStatSystem Player;
     public GameObject AttackObject;
@@ -56,7 +57,7 @@ public class Attack : MonoBehaviour
             }
         }
     }
-
+    [Command]
     private void doAttack()
     {
         if (!Player.isAttackable || !Player.isControlable || Player.RemainBullet == 0)
@@ -72,7 +73,7 @@ public class Attack : MonoBehaviour
 
         attackRb = attack.GetComponent<Rigidbody>();
         attackRb.AddForce((attack.transform.forward + new Vector3(0, 1 * attack.transform.forward.y, 0)) * attackPower);
-
+        NetworkServer.Spawn(attack);
         Player.RemainBullet--;
 
         OnCollideDamage onCollideDamage = attack.GetComponent<OnCollideDamage>();

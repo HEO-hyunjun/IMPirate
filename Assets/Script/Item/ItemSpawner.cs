@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using MoreMountains;
 using MoreMountains.Tools;
+using Mirror;
 
-public class ItemSpawner : MonoBehaviour
+public class ItemSpawner : NetworkBehaviour
 {
     [SerializeField]
     [MMReadOnly]
@@ -16,7 +17,7 @@ public class ItemSpawner : MonoBehaviour
     {
         get { return ItemSpawnManager.instance != null; }
     }
-
+    [Command]
     void SpawnItemHere()
     {
         if (spawnedItem != null || isCoolDown || !isManagerExist)
@@ -26,6 +27,7 @@ public class ItemSpawner : MonoBehaviour
 
         spawnedItem.transform.position = transform.position;
         spawnedItem.transform.parent = transform;
+        NetworkServer.Spawn(spawnedItem);
     }
 
     private void Start()

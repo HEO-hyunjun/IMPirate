@@ -6777,6 +6777,28 @@ MonoBehaviour:
   playerSpawnMethod: 0
   spawnPrefabs:
   - {fileID: 324196197936867006, guid: 2d7e79057897aab4ea09a66dfa101f20, type: 3}
+  - {fileID: 8350193106453738794, guid: 328b0e1fda061d54ea92edf244ddd78c, type: 3}
+  - {fileID: 8350193106453738794, guid: 3b877d85ba7b0b24e82df71753313e6b, type: 3}
+  - {fileID: 8350193106453738794, guid: 00bc23445807d8643a55fd5e2ee3a73d, type: 3}
+  - {fileID: 7474550310945011199, guid: 609facb99ea1b864f9d342fe0cb5f35c, type: 3}
+  - {fileID: 7068824381464809433, guid: 703ea45b32c261f4aa00d1ea51e06fcb, type: 3}
+  - {fileID: 7068824381464809433, guid: e7b9377334dcc1c479ee4361b7c84d15, type: 3}
+  - {fileID: 7068824381464809433, guid: 4f2cc4f703d46f9469c3467b2cf78ed0, type: 3}
+  - {fileID: 3129751357175454715, guid: e21514fb075a3964aab38822bd76ecce, type: 3}
+  - {fileID: 3129751357175454715, guid: 9b24b93787a20f54f94cdb3afcaf3708, type: 3}
+  - {fileID: 3453472874137717925, guid: 66ddc082b9e82a44b81225377e61ad20, type: 3}
+  - {fileID: 3453472874137717925, guid: 5658eb6360cc56b4885d0748e1cc30f1, type: 3}
+  - {fileID: 5355330384418770263, guid: 219ce5b534734da4bb4a9cbe93b8bd29, type: 3}
+  - {fileID: 5973687610432702656, guid: 23b21160405657c4faee5bad965a0f0f, type: 3}
+  - {fileID: 5973687610432702656, guid: e564a82515f9ff748af8da0fbf4b32d7, type: 3}
+  - {fileID: 2477723694147213322, guid: 1d86602be06aa784187ab36168d7e5c6, type: 3}
+  - {fileID: 2477723694147213322, guid: 30a6abdae96a9a647a38d654cdef3d80, type: 3}
+  - {fileID: 7662342077709073957, guid: d8c36c20425f8984285a9d5467de6157, type: 3}
+  - {fileID: 7765341275421541598, guid: d531461f6c8ae18499915521b58b0f46, type: 3}
+  - {fileID: 1237276135036502667, guid: e70120e6e1478d147bca8f05bc5110d0, type: 3}
+  - {fileID: 1237276135036502667, guid: 89bd4a6b6a1ee134abdd05cfc9da66cd, type: 3}
+  - {fileID: 3516185756723504896, guid: d65c3b980acdbbf48bdc76b7151bab7b, type: 3}
+  - {fileID: 800407163888407084, guid: ca331b83a3c43a8489c36929c427d296, type: 3}
   snapshotSettings:
     bufferTimeMultiplier: 2
     bufferLimit: 32

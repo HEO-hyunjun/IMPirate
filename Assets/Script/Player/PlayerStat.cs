@@ -10,7 +10,12 @@ public class PlayerStat : NetworkBehaviour
     public StatUISystem uiSystem;
     #region 플레이어의 상태
     public bool isDead = false;
-    public bool isControlable { get { return isOwned; } }
+    public bool isControlable { 
+        get {
+            Debug.Log(isOwned);
+            return isOwned; 
+        } 
+    }
     public int isUsingItem = 0;
     [SerializeField]
     [MMFReadOnly]
