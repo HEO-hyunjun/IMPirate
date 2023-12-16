@@ -10418,6 +10418,7 @@ GameObject:
   - component: {fileID: 8887744166342192926}
   - component: {fileID: 6389784809496204571}
   - component: {fileID: -1997009025481350303}
+  - component: {fileID: 2629657629216892728}
   m_Layer: 0
   m_Name: Player_Base
   m_TagString: Player
@@ -10478,6 +10479,40 @@ MonoBehaviour:
   syncInterval: 0
   target: {fileID: 8887744166342192926}
   clientAuthority: 1
+  syncPosition: 1
+  syncRotation: 1
+  syncScale: 0
+  interpolatePosition: 1
+  interpolateRotation: 1
+  interpolateScale: 1
+  coordinateSpace: 0
+  sendIntervalMultiplier: 1
+  timelineOffset: 0
+  showGizmos: 0
+  showOverlay: 0
+  overlayColor: {r: 0, g: 0, b: 0, a: 0.5}
+  onlySyncOnChange: 1
+  bufferResetMultiplier: 3
+  positionSensitivity: 0.01
+  rotationSensitivity: 0.01
+  scaleSensitivity: 0.01
+--- !u!114 &2629657629216892728
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 324196197936867006}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3b20dc110904e47f8a154cdcf6433eae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  syncDirection: 0
+  syncMode: 0
+  syncInterval: 0
+  target: {fileID: 9046522726882740102}
+  clientAuthority: 0
   syncPosition: 1
   syncRotation: 1
   syncScale: 0
@@ -89328,10 +89363,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8d9516f243d918d44925681ab13fe300, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  syncDirection: 0
+  syncMode: 0
+  syncInterval: 0
   source: {fileID: 11400000, guid: c4be9dacfda6fea4db7180149fe1d5e2, type: 2}
   uiSystem: {fileID: 3787273267918295901}
   isDead: 0
-  isControlable: 1
   isUsingItem: 0
   isAttackable: 1
   playerID: test1
@@ -89446,6 +89483,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eb8767289cd4f004b9c5c70c79761593, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  syncDirection: 0
+  syncMode: 0
+  syncInterval: 0
   right: 0
   rightTimer: 0
   left: 0

@@ -10,6 +10,8 @@ public class PlayUI : MonoBehaviour
     [SerializeField]
     private TMP_InputField nicknameInputField;
     [SerializeField]
+    private TMP_InputField ipInputField;
+    [SerializeField]
     private GameObject createRoomUI;
 
     public void OnClickCreateRoomButton()
@@ -24,18 +26,24 @@ public class PlayUI : MonoBehaviour
         {
             nicknameInputField.GetComponent<Animator>().SetTrigger("on");
         }
+        
     }
 
     public void OnClickEnterGameRoomButton()
     {
-        if (nicknameInputField.text != "")
+        if (nicknameInputField.text != "" && ipInputField.text != "")
         {
             var manager = RoomManager.singleton;
+            manager.networkAddress = ipInputField.text;
             manager.StartClient();
         }
-        else
+        if(nicknameInputField.text == "")
         {
             nicknameInputField.GetComponent<Animator>().SetTrigger("on");
+        }
+        if (ipInputField.text == "")
+        {
+            ipInputField.GetComponent<Animator>().SetTrigger("on");
         }
     }
 }

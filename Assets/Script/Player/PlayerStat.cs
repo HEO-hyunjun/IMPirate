@@ -1,15 +1,16 @@
+using Mirror;
 using MoreMountains.Feedbacks;
 using MoreMountains.Tools;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-public class PlayerStat : MonoBehaviour
+public class PlayerStat : NetworkBehaviour
 {
     public PlayerStatObject source;
     public StatUISystem uiSystem;
     #region 플레이어의 상태
     public bool isDead = false;
-    public bool isControlable = false;
+    public bool isControlable { get { return isOwned; } }
     public int isUsingItem = 0;
     [SerializeField]
     [MMFReadOnly]

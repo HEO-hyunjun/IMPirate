@@ -1,8 +1,9 @@
+using Mirror;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Movement : MonoBehaviour
+public class Movement : NetworkBehaviour
 {
     public float right;
     public float rightTimer;
@@ -34,7 +35,7 @@ public class Movement : MonoBehaviour
         rightTimer = dirInterval;
     }
 
-    private void Awake()
+    private void Start()
     {
         Initialize();
     }

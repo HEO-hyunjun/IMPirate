@@ -17,7 +17,7 @@ public class PlayerStatSystem : PlayerStat
     private void Inititialize()
     {
         LoadStatObject();
-        //SetPlayerID("Base"); // 서버 연결할때 각 플레이어별로 다르게 세팅해야함
+        SetPlayerID(PlayerSettings.nickname); // 서버 연결할때 각 플레이어별로 다르게 세팅해야함
         //isControlable = true;// 서버 연결할때 각 플레이어별로 다르게 세팅해야함
 
         if (isControlable)
@@ -33,7 +33,7 @@ public class PlayerStatSystem : PlayerStat
         uiSystem.updateSpeedLevel();
     }
 
-    void Awake()
+    void Start()
     {
         Inititialize();
     }
