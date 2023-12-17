@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 7843670528907658074}
   - component: {fileID: 937088576048396518}
   - component: {fileID: 7793727557360713537}
+  - component: {fileID: -2680096865661667138}
   m_Layer: 0
   m_Name: EmptyItem
   m_TagString: Untagged
@@ -295,3 +296,19 @@ MonoBehaviour:
   serverOnly: 1
   visible: 0
   hasSpawned: 0
+--- !u!114 &-2680096865661667138
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 800407163888407084}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0f6afdf86484849449ca306134c0e344, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  item: {fileID: 11400000, guid: 28f6ff7efb4fc6c40a8e4da96230ea04, type: 2}
+  targetItemSystem: {fileID: 0}
+  whenCollide: {fileID: 0}
+  installer: developer

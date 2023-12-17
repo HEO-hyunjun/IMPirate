@@ -5,6 +5,7 @@ using MoreMountains;
 using MoreMountains.Feedbacks;
 using MoreMountains.FeedbacksForThirdParty;
 using Cinemachine;
+using Mirror;
 
 // playerstatobject -> playerstat -> statsystem
 // playerstatobject 데이터
@@ -16,6 +17,7 @@ public class PlayerStatSystem : PlayerStat
     public CinemachineVirtualCamera cam;
     private void Inititialize()
     {
+        //animatorController = Instantiate(animatorController);
         LoadStatObject();
         SetPlayerID(PlayerSettings.nickname); // 서버 연결할때 각 플레이어별로 다르게 세팅해야함
 
@@ -39,12 +41,24 @@ public class PlayerStatSystem : PlayerStat
         Inititialize();
     }
     #region Stat 변경 함수들
-    public void Damage(float damage)
+    [Command]
+    public void CmdDamage(float damage)
     {
         if (!isDead || (isUsingItem / 10) != 204) //무적아이템 사용중이거나, 죽지 않았다면,
         { 
             Hp -= damage;
-            if(animatorController != null)
+        }
+        if (isDead)
+            Dead();
+    }
+
+    public void Damage(float damage)
+    {
+        //CmdDamage(damage);
+        if (!isDead || (isUsingItem / 10) != 204) //무적아이템 사용중이거나, 죽지 않았다면,
+        {
+            Hp -= damage;
+            if (animatorController != null && isControlable)
                 animatorController.TriggerHit();
         }
         if (isDead)

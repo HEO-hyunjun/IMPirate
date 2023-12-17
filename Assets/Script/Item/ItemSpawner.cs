@@ -5,7 +5,7 @@ using MoreMountains;
 using MoreMountains.Tools;
 using Mirror;
 
-public class ItemSpawner : NetworkBehaviour
+public class ItemSpawner : MonoBehaviour
 {
     [SerializeField]
     [MMReadOnly]
@@ -17,11 +17,8 @@ public class ItemSpawner : NetworkBehaviour
     {
         get { return ItemSpawnManager.instance != null; }
     }
-
     void SpawnItemHere()
     {
-        if (!isServer)
-            return;
         if (spawnedItem != null || isCoolDown || !isManagerExist)
             return;
 
@@ -29,10 +26,9 @@ public class ItemSpawner : NetworkBehaviour
 
         spawnedItem.transform.position = transform.position;
         spawnedItem.transform.parent = transform;
-
-        NetworkServer.Spawn(spawnedItem);
     }
-    
+
+
     private void Start()
     {
         

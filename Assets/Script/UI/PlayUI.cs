@@ -33,6 +33,7 @@ public class PlayUI : MonoBehaviour
     {
         if (nicknameInputField.text != "" && ipInputField.text != "")
         {
+            PlayerSettings.nickname = nicknameInputField.text;
             var manager = RoomManager.singleton;
             manager.networkAddress = ipInputField.text;
             manager.StartClient();

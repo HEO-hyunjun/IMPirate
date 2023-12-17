@@ -9,12 +9,14 @@ public class PlayerStat : NetworkBehaviour
     public PlayerStatObject source;
     public StatUISystem uiSystem;
     #region 플레이어의 상태
+    [SyncVar]
     public bool isDead = false;
     public bool isControlable { 
         get {
             return isOwned; 
         } 
     }
+    
     public int isUsingItem = 0;
     [SerializeField]
     [MMFReadOnly]
@@ -22,6 +24,7 @@ public class PlayerStat : NetworkBehaviour
     #endregion
     #region 네트워크에 필요한 플레이어 정보
     [SerializeField]
+    [SyncVar]
     protected string playerID;
     public string PlayerID
     {
@@ -35,7 +38,6 @@ public class PlayerStat : NetworkBehaviour
         set
         {
             score = value;
-            uiSystem.updateScore();
         }
     }
     #endregion
@@ -51,6 +53,7 @@ public class PlayerStat : NetworkBehaviour
         }
     }
     [SerializeField]
+    [SyncVar]
     protected float hp;
     public float Hp
     {
@@ -65,13 +68,13 @@ public class PlayerStat : NetworkBehaviour
                 hp = max_hp;
             else
                 hp = value;
-            uiSystem.updateHP();
         }
         get { return hp; }
     }
     #region 공격관련
     public float max_attack;
     [SerializeField]
+    [SyncVar]
     protected float attack;
     [MMHidden]
     public float tmpAttack = 0;
@@ -131,6 +134,12 @@ public class PlayerStat : NetworkBehaviour
     #endregion
     #region 초기화 메소드들
     public void SetPlayerID(string id)
+    {
+        CmdSetPlayerID(id);
+    }
+
+    [Command]
+    public void CmdSetPlayerID(string id)
     {
         playerID = id;
     }

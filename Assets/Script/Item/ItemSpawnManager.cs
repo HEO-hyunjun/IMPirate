@@ -25,6 +25,7 @@ public class ItemSpawnManager : MonoBehaviour
     private bool isInitiated = false;
     public static ItemSpawnManager instance = null;
 
+
     private void Awake()
     {
         if (instance == null) //instance가 null. 즉, 시스템상에 존재하고 있지 않을때
@@ -57,11 +58,17 @@ public class ItemSpawnManager : MonoBehaviour
     {
         InitProbability();
         float rand = Random.Range(0f, totalProbability);
+        GameObject gameObject = null;
+        
         foreach (var item in spawnList)
         {
             if (item.calcProbability > rand)
-                return item.itemPrefab;
+            {
+                gameObject = item.itemPrefab;
+                return gameObject;
+            }
+
         }
-        return spawnList[0].itemPrefab;
+        return gameObject;
     }
 }

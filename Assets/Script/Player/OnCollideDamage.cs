@@ -1,11 +1,14 @@
+using Mirror;
 using MoreMountains.Feedbacks;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class OnCollideDamage : MonoBehaviour
+public class OnCollideDamage : NetworkBehaviour
 {
+    [SyncVar]
     public PlayerStatSystem ownerStatSystem;
+    [SyncVar]
     private PlayerStatSystem targetStatSystem;
 
     public MMF_Player whenStart;

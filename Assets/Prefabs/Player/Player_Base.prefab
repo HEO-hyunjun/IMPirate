@@ -89322,10 +89322,10 @@ GameObject:
   - component: {fileID: 9046522726882740102}
   - component: {fileID: 2251388313558508242}
   - component: {fileID: 690902114903707987}
-  - component: {fileID: 8538499681400433751}
   - component: {fileID: 1557579724268115240}
   - component: {fileID: 4496182063480863820}
   - component: {fileID: 3148936498497123844}
+  - component: {fileID: 922673543642735498}
   m_Layer: 0
   m_Name: PlayerBody
   m_TagString: Player
@@ -89452,25 +89452,6 @@ MonoBehaviour:
     feedback: {fileID: 6193863601658965170}
   minePrefab: {fileID: 5355330384418770263, guid: 219ce5b534734da4bb4a9cbe93b8bd29,
     type: 3}
---- !u!114 &8538499681400433751
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4927493909701314149}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 584cc70cb090f2b45a3107dcb8c98b27, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Player: {fileID: 2251388313558508242}
-  AttackObject: {fileID: 7474550310945011199, guid: 609facb99ea1b864f9d342fe0cb5f35c,
-    type: 3}
-  attackPower: 10000
-  AttackSpawnPosition: {fileID: 8727477546397170934}
-  feedback: {fileID: 2746065412045187012}
-  deltaTime: 0
 --- !u!114 &1557579724268115240
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -89549,6 +89530,28 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &922673543642735498
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4927493909701314149}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 584cc70cb090f2b45a3107dcb8c98b27, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  syncDirection: 0
+  syncMode: 0
+  syncInterval: 0
+  Player: {fileID: 2251388313558508242}
+  AttackObject: {fileID: 7474550310945011199, guid: 609facb99ea1b864f9d342fe0cb5f35c,
+    type: 3}
+  attackPower: 10000
+  AttackSpawnPosition: {fileID: 8727477546397170934}
+  feedback: {fileID: 2746065412045187012}
+  deltaTime: 0
 --- !u!1 &4955544337889001412
 GameObject:
   m_ObjectHideFlags: 0
@@ -131322,7 +131325,7 @@ MonoBehaviour:
   okFeedback: {fileID: 0}
   useItemFeedback: {fileID: 0}
   getItemFeedback: {fileID: 0}
-  hitFeedback: {fileID: 0}
+  hitFeedback: {fileID: 8773503640167190646}
 --- !u!1 &8954883407346125793
 GameObject:
   m_ObjectHideFlags: 0

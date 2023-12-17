@@ -1,3 +1,4 @@
+using Mirror;
 using MoreMountains.Feedbacks;
 using System;
 using System.Collections;
@@ -49,6 +50,13 @@ public class StatUISystem : MonoBehaviour
         updateRemainBullet();
         updateScore();
         updateHP();
+    }
+
+    private void Update()
+    {
+        updateHP();
+        updateScore();
+        updateSpeedLevel();
     }
 
     #region HP
