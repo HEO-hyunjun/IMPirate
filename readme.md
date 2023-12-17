@@ -66,17 +66,16 @@ Unity version : 2022.3.8f1<br>
 ## 추가 라이선스
 1. 유니티 에셋(유료)<br>
 Feel<br>
-PolygonParticleFX<br>
 PolygonPirates<br>
+PolygonParticleFX<br>
 SimpleFX<br>
-Cute UI _ Interact Sound Effects Pack<br>
-Game Music Stingers and UI SFX Pack 2
 2. 애니메이션<br>
 Mixamo.com
 3. 폰트<br>
-던파 연단된 칼날(https://df.nexon.com/df/pg/dnfforgedblade)<br>
-프리텐다드(https://github.com/orioncactus/pretendard/blob/main/LICENSE)<br>
+던파 연단된 칼날: (c) 2005 NEOPLE Inc. & NEXON Korea Corporation All Rights Reserved.(https://df.nexon.com/df/pg/dnfforgedblade)<br>
+프리텐다드: Kil Hyung-jin (https://github.com/orioncactus/pretendard), SIL Open Font License 1.1(https://github.com/orioncactus/pretendard/blob/main/LICENSE)<br>
+빛의계승자체: ‘빛의계승자체’의 지적재산권은 펀플로(www.funflow.co.kr)와 산돌 커뮤니케이션즈(www.sandoll.co.kr)에 있습니다.<br>
 4. 아이콘<br>
-Generic Detailed Outline : FreePik- kerismaker (https://kr.freepik.com/icon/pirate_7893774#fromView=resource_detail&position=10)<br>
+Generic Glyph : Marz Gallery (https://kr.freepik.com/author/marz-gallery/icons/generic-glyph_5932?t=f#from_element=resource_detail)
 Icons created by Lorc, Delapouite & contributors (https://game-icons.net/) licensed under CC BY 3.0.
 
