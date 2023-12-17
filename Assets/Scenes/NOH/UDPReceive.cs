@@ -17,7 +17,7 @@ public class UDPReceive : MonoBehaviour
     public string data;
 
 
-    public void Start()
+    public void Awake()
     {
         try 
         { 
@@ -43,8 +43,6 @@ public class UDPReceive : MonoBehaviour
         {
             isError = true;
             startRecieving = false;
-
-            return;
         }
         while (startRecieving)
         {

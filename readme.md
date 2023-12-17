@@ -1,6 +1,6 @@
 # IMPirate
 python mediapipe, opencv를 활용하여 카메라로 사람을 인식하여 그 사람의 관절을 UDP통신을 이용해 Unity로 받아와서 포즈를 인식하여 게임의 입력으로 활용합니다.
-그리고 Mirror 오픈소스를 활용하여 간이 P2P서버를 구축하여 다른 사람들과 실시간으로 경쟁할 수 있도록 했습니다.
+그리고 Mirror 오픈소스를 활용하여 간이 서버를 구축하여 다른 사람들과 실시간으로 경쟁할 수 있도록 했습니다.
 
 ## 개발환경
 사용언어 : C#, Python<br>
@@ -9,14 +9,14 @@ python mediapipe, opencv를 활용하여 카메라로 사람을 인식하여 그
 Unity version : 2022.3.8f1<br>
 
 ## 제작기간
-2023/11/29 ~ 2023/12/16
+2023/11/29 ~ 2023/12/17
 
 ## 팀원
 노순혁 : 카메라를 통한 포즈인식 이후 UDP통신을 활용해 Unity에 전송<br>
-신해인 : Mirror를 활용해 멀티 플레이어 구현<br>
-허현준 : 게임 기획과 플레이어, 아이템, 게임플레이 씬 UI, 맵디자인, 애니메이션, 상호작용 구현
+신해인 : Mirror를 활용해 멀티 플레이어 씬 구성과 UI작업 및 호스트 서버 접속<br>
+허현준 : 게임 기획과 플레이어, 아이템, 게임플레이 씬 UI, 맵디자인, 애니메이션, 상호작용 구현, 멀티플레이 구현 도움
 
-## 게임 규칙
+## 게임 규칙 (미구현)
 1. 게임은 총 10분 진행합니다.
 2. 점수를 가장 많이 획득한 사람이 승리합니다.
 3. 점수는 다음과 같은 경우 획득합니다.
@@ -51,7 +51,7 @@ Unity version : 2022.3.8f1<br>
 ## 실행
 - python 환경설정
     1. conda 설치
-    2. 프로젝트 폴더 접근
+    2. `cd (BaseDirectory)/IMPirate/MideaPipe/`<br>프로젝트 폴더 접근 
     3. `conda env create -f conda_requirements.yaml` 입력 <br>새로운 가상환경에 라이브러리 설치 
     4. `conda activate IMPirate` 입력 <br>가상환경 실행
     5. `python MediaPipe/MotionCap.py` 입력 (선택) <br>모션캡쳐 프로그램 실행, esc입력시 종료
@@ -79,6 +79,4 @@ Mixamo.com
 4. 아이콘<br>
 Generic Detailed Outline : FreePik- kerismaker (https://kr.freepik.com/icon/pirate_7893774#fromView=resource_detail&position=10)<br>
 Icons created by Lorc, Delapouite & contributors (https://game-icons.net/) licensed under CC BY 3.0.
-5. 음성<br>
-이 콘텐츠는 인공지능 가상 연기자 서비스, 타입캐스트를 활용하여 제작되었습니다. (https://typecast.ai/kr)
-사용 음성캐릭터 : 프랑켄슈타인
+

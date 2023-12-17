@@ -6744,7 +6744,7 @@ MonoBehaviour:
     deliveryTimeEmaDuration: 2
   connectionQualityInterval: 3
   timeInterpolationGui: 0
-  showRoomGUI: 1
+  showRoomGUI: 0
   minPlayers: 1
   roomPlayerPrefab: {fileID: 6252771578932244267, guid: b4e95c833c8ddf248ad591da9d7e2a60,
     type: 3}
