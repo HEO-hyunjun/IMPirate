@@ -1,4 +1,5 @@
 # IMPirate
+[플레이 영상](https://youtu.be/VxuV-LumprI)
 python mediapipe, opencv를 활용하여 카메라로 사람을 인식하여 그 사람의 관절을 UDP통신을 이용해 Unity로 받아와서 포즈를 인식하여 게임의 입력으로 활용합니다.
 그리고 Mirror 오픈소스를 활용하여 간이 서버를 구축하여 다른 사람들과 실시간으로 경쟁할 수 있도록 했습니다.
 
